@@ -1,0 +1,81 @@
+version: "3.5"
+
+services:
+
+  #devkit.elk:
+  #  image: devkit.elk
+  #  container_name: devkit.elk
+  #  build:
+  #    context: .
+  #    dockerfile: elk/Dockerfile
+  #  restart: unless-stopped
+  #  networks:
+  #    - devkit.net
+
+  devkit.mongodb:
+    image: devkit.mongodb
+    container_name: devkit.mongodb
+    build:
+      context: .
+      dockerfile: mongodb/Dockerfile
+    restart: unless-stopped
+    networks:
+      - devkit.net
+
+  devkit.consul:
+    image: devkit.consul
+    container_name: devkit.consul
+    build:
+      context: .
+      dockerfile: consul/Dockerfile
+    restart: unless-stopped
+    networks:
+      - devkit.net
+
+  devkit.portainer:
+    image: devkit.portainer
+    container_name: devkit.portainer
+    build:
+      context: .
+      dockerfile: portainer/Dockerfile
+    restart: unless-stopped
+    networks:
+      - devkit.net
+
+  devkit.rabbitmq:
+    image: devkit.rabbitmq
+    container_name: devkit.rabbitmq
+    build:
+      context: .
+      dockerfile: rabbitmq/Dockerfile
+    restart: unless-stopped
+    networks:
+      - devkit.net
+
+  devkit.mongoclient:
+    image: devkit.mongoclient
+    container_name: devkit.mongoclient
+    build:
+      context: .
+      dockerfile: mongoclient/Dockerfile
+    restart: unless-stopped
+    networks:
+      - devkit.net
+     
+  devkit.elasticsearch:
+    container_name: devkit.elasticsearch
+    image: devkit.elasticsearch
+    networks:
+      - devkit.net
+    
+  devkit.kibana:
+    container_name: devkit.kibana
+    image: devkit.kibana
+    depends_on:
+      - devkit.elasticsearch
+    networks:
+      - devkit.net
+
+networks:
+  devkit.net:
+    driver: bridge

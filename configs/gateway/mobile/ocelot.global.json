@@ -1,0 +1,21 @@
+{
+    "GlobalConfiguration": {
+        "RequestIdKey": "mobile-request",
+        "ServiceDiscoveryProvider": {
+            "Host": "devkit.consul",
+            "Port": 8500,
+            "Type": "Consul",
+            "ConfigurationKey": "consul-mobile"
+        },
+        "LoadBalancerOptions": {
+            "Type": "LeastConnection",
+            "Key": "mobile-loadbalancer",
+            "Expiry": 5000
+        },
+        "QoSOptions": {
+            "ExceptionsAllowedBeforeBreaking": 3,
+            "DurationOfBreak": 1000,
+            "TimeoutValue": 5000
+        }
+    }
+}

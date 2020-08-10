@@ -1,0 +1,42 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/{catchAll}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/orders-api/{catchAll}",
+            "UpstreamHttpMethod": [
+                "Post",
+                "Put",
+                "Delete"
+            ],
+            "RouteClaimsRequirement": {
+                "role": "User"
+            },
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "devkit-security",
+                "AllowedScopes": [
+                    "client.write"
+                ]
+            },
+            "ServiceName": "orders-api"
+        },
+        {
+            "DownstreamPathTemplate": "/{catchAll}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/orders-api/{catchAll}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "RouteClaimsRequirement": {
+                "role": "User"
+            },
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "devkit-security",
+                "AllowedScopes": [
+                    "client.read"
+                ]
+            },
+            "ServiceName": "orders-api"
+        }
+    ]
+}

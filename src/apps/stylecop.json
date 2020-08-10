@@ -1,0 +1,35 @@
+{
+    "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+    "settings": {
+        "documentationRules": {
+            "companyName": "Adriano",
+            "copyrightText": "     See the [assembly: AssemblyCopyright(..)] marking attribute linked in to this file's associated project for copyright © information.",
+            "headerDecoration": "-----------------------------------------------------------------------",
+            "documentInterfaces": true,
+            "documentExposedElements": true,
+            "documentPrivateElements": true,
+            "documentInternalElements": true,
+            "documentPrivateFields": true
+        },
+        "maintainabilityRules": {
+            "topLevelTypes": [ "class" ]
+        },
+        "namingRules": {
+            "allowCommonHungarianPrefixes": false,
+            "allowedHungarianPrefixes": [
+                "as",
+                "do",
+                "db",
+                "id",
+                "if",
+                "in",
+                "is",
+                "my",
+                "no",
+                "on",
+                "to",
+                "ui"
+            ]
+        }
+    }
+}
