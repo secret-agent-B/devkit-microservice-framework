@@ -12,14 +12,14 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Metrics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\metrics\\Devkit.Me" +
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Metrics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "f:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\metrics\\Devkit.Me" +
     "trics", "Devkit.Metrics.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Patterns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\patterns\\Devkit.P" +
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Patterns, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "f:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\patterns\\Devkit.P" +
     "atterns", "Devkit.Patterns.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\api\\security\\Devkit.S" +
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "f:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\api\\security\\Devkit.S" +
     "ecurity", "Devkit.Security.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\test\\Devkit.Test", "Devkit.Test.csproj", "0")]
-[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\webapi\\Devkit.Web" +
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "f:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\test\\Devkit.Test", "Devkit.Test.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("Devkit.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "f:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\webapi\\Devkit.Web" +
     "API", "Devkit.WebAPI.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("Adriano")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
