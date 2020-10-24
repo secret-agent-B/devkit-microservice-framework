@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Payment.CoinsPH</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceCommand">
+            <summary>
+            The CreateInvoiceCommand is the command that is issued when the user initiates a transaction to buy more credits.
+            </summary>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceCommand.Amount">
+            <summary>
+            Gets or sets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceCommand.Currency">
+            <summary>
+            Gets or sets the currency.
+            </summary>
+            <value>
+            The currency.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceCommand.TransactionId">
+            <summary>
+            Gets or sets the transaction identifier.
+            </summary>
+            <value>
+            The transaction identifier.
+            </value>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler">
+            <summary>
+            The CreateInvoiceHandler handles the CreateInvoiceCommand.
+            </summary>
+        </member>
+        <member name="F:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler._configuration">
+            <summary>
+            The configuration.
+            </summary>
+        </member>
+        <member name="F:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler._httpClient">
+            <summary>
+            The HTTP client.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler.#ctor(Devkit.Data.Interfaces.IRepository,System.Net.Http.IHttpClientFactory,Microsoft.Extensions.Options.IOptions{Devkit.Payment.CoinsPH.CoinsPHConfiguration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+            <param name="httpClientFactory">The HTTP client factory.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHandler.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            The code that is executed to perform the command or query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse">
+            <summary>
+            The CreateInvoiceResponse represents a response from CoinsPH after creating an invoice.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse"/> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Amount">
+            <summary>
+            Gets or sets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.AmountDue">
+            <summary>
+            Gets or sets the amount due.
+            </summary>
+            <value>
+            The amount due.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.BTCAmountDue">
+            <summary>
+            Gets or sets the BTC amount due.
+            </summary>
+            <value>
+            The BTC amount due.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Category">
+            <summary>
+            Gets or sets the category.
+            </summary>
+            <value>
+            The category.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.CreatedAt">
+            <summary>
+            Gets or sets the created at.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Currency">
+            <summary>
+            Gets or sets the currency.
+            </summary>
+            <value>
+            The currency.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.CurrentPaymentReferenceNumber">
+            <summary>
+            Gets or sets the current payment reference number.
+            </summary>
+            <value>
+            The current payment reference number.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.ExpiresAt">
+            <summary>
+            Gets or sets the expires at.
+            </summary>
+            <value>
+            The expires at.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.ExpiresInSeconds">
+            <summary>
+            Gets or sets the expires in seconds.
+            </summary>
+            <value>
+            The expires in seconds.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.ExternalTransaction">
+            <summary>
+            Gets or sets the external transaction.
+            </summary>
+            <value>
+            The external transaction.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.IncomingAddress">
+            <summary>
+            Gets or sets the incoming address.
+            </summary>
+            <value>
+            The incoming address.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.InitialRate">
+            <summary>
+            Gets or sets the initial rate.
+            </summary>
+            <value>
+            The initial rate.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.LockedRate">
+            <summary>
+            Gets or sets the locked rate.
+            </summary>
+            <value>
+            The locked rate.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Metadata">
+            <summary>
+            Gets or sets the meta data.
+            </summary>
+            <value>
+            The meta data.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Note">
+            <summary>
+            Gets or sets the note.
+            </summary>
+            <value>
+            The note.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.NoteScope">
+            <summary>
+            Gets or sets the note scope.
+            </summary>
+            <value>
+            The note scope.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.PaymentCollectorFeePlacement">
+            <summary>
+            Gets or sets the payment collector fee placement.
+            </summary>
+            <value>
+            The payment collector fee placement.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Payments">
+            <summary>
+            Gets or sets the payments.
+            </summary>
+            <value>
+            The payments.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.PaymentUrl">
+            <summary>
+            Gets or sets the payment URL.
+            </summary>
+            <value>
+            The payment URL.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Receiver">
+            <summary>
+            Gets or sets the receiver.
+            </summary>
+            <value>
+            The receiver.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.SenderEmail">
+            <summary>
+            Gets or sets the sender email.
+            </summary>
+            <value>
+            The sender email.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.SenderMobileNumber">
+            <summary>
+            Gets or sets the sender mobile number.
+            </summary>
+            <value>
+            The sender mobile number.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.SenderName">
+            <summary>
+            Gets or sets the name of the sender.
+            </summary>
+            <value>
+            The name of the sender.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.SupportedPaymentCollectors">
+            <summary>
+            Gets or sets the supported payment collectors.
+            </summary>
+            <value>
+            The supported payment collectors.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceHttpResponse.UpdatedAt">
+            <summary>
+            Gets or sets the updated at.
+            </summary>
+            <value>
+            The updated at.
+            </value>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceValidator">
+            <summary>
+            The CreateInvoiceValidator for creating an invoice for Coins.Ph.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Payment.CoinsPH.Business.Invoice.Commands.CreateInvoice.CreateInvoiceValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.CoinsPHService">
+            <summary>
+            The CoinsPhAPI.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.CoinsPHService.#ctor(MediatR.IMediator,Microsoft.Extensions.Options.IOptions{Devkit.Payment.CoinsPH.CoinsPHConfiguration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Payment.CoinsPH.CoinsPHService"/> class.
+            </summary>
+            <param name="mediator">The mediator.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.CoinsPHService.CreateInvoice(System.Double,System.String,System.String)">
+            <summary>
+            Creates the invoice.
+            </summary>
+            <param name="amount">The amount.</param>
+            <param name="transactionId">The transaction identifier.</param>
+            <param name="currency">The currency.</param>
+            <returns>
+            A vendor transaction view model.
+            </returns>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.CoinsPHService.GetInvoiceStatus(System.String)">
+            <summary>
+            Gets the invoice status.
+            </summary>
+            <param name="invoiceId">The invoice identifier.</param>
+            <returns>
+            A vendor transaction view model.
+            </returns>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.CoinsPHConfiguration">
+            <summary>
+            The CoinsPhConfiguration.
+            </summary>
+        </member>
+        <member name="F:Devkit.Payment.CoinsPH.CoinsPHConfiguration.ConfigSection">
+            <summary>
+            The coins ph configuration key.
+            </summary>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.CoinsPHConfiguration.BaseAddress">
+            <summary>
+            Gets or sets the base URL.
+            </summary>
+            <value>
+            The base URL.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.CoinsPHConfiguration.InvoiceCallbackUrl">
+            <summary>
+            Gets or sets the create invoice callback URL.
+            </summary>
+            <value>
+            The create invoice callback URL.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.CoinsPH.CoinsPHConfiguration.InvoiceRoute">
+            <summary>
+            Gets or sets the create invoice URL.
+            </summary>
+            <value>
+            The create invoice URL.
+            </value>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.CoinsPhController">
+            <summary>
+            The CoinsPhController is a controller for communicating with Coins.Ph.
+            </summary>
+        </member>
+        <member name="T:Devkit.Payment.CoinsPH.Extensions.ServiceCollectionExtension">
+            <summary>
+            The ServiceCollectionExtension provides extension methods for DI.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.CoinsPH.Extensions.ServiceCollectionExtension.AddCoinsPH(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the coins ph.
+            </summary>
+            <param name="services">The services.</param>
+            <returns>The service collection.</returns>
+        </member>
+    </members>
+</doc>

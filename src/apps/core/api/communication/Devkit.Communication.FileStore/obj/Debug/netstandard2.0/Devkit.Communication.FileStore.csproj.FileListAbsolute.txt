@@ -1,0 +1,15 @@
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.Communication.FileStore.deps.json
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.Communication.FileStore.dll
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.Communication.FileStore.pdb
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.Communication.FileStore.xml
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.ServiceBus.dll
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.ServiceBus.pdb
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\bin\Debug\netstandard2.0\Devkit.ServiceBus.xml
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.csprojAssemblyReference.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.AssemblyInfoInputs.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.AssemblyInfo.cs
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.csproj.CoreCompileInputs.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.csproj.CopyComplete
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.dll
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.xml
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\api\communication\Devkit.Communication.FileStore\obj\Debug\netstandard2.0\Devkit.Communication.FileStore.pdb

@@ -2,6 +2,11 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
+    <ItemGroup>
+      <Compile Remove="Properties\**" />
+      <EmbeddedResource Remove="Properties\**" />
+      <None Remove="Properties\**" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Consul" Version="1.6.1.1" />
@@ -24,9 +29,5 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Properties\" />
     </ItemGroup>
 </Project>

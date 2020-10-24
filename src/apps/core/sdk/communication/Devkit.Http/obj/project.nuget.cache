@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "GD8p+ieJWBPmw9SkM4EkBopqUiZm9Cs2ElQnm3ngAs5kwInqp+19gaVLpxl4NmcxREs/Rtzir4OVknbScf1uPQ==",
+  "success": true,
+  "projectFilePath": "F:\\Source\\Repos\\devkit-microservice-framework\\src\\apps\\core\\sdk\\communication\\Devkit.Http\\Devkit.Http.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ryana\\.nuget\\packages\\microsoft.codeanalysis.fxcopanalyzers\\3.3.0\\microsoft.codeanalysis.fxcopanalyzers.3.3.0.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\microsoft.codeanalysis.versioncheckanalyzer\\3.3.0\\microsoft.codeanalysis.versioncheckanalyzer.3.3.0.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\microsoft.codequality.analyzers\\3.3.0\\microsoft.codequality.analyzers.3.3.0.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\microsoft.netcore.analyzers\\3.3.0\\microsoft.netcore.analyzers.3.3.0.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\microsoft.netframework.analyzers\\3.3.0\\microsoft.netframework.analyzers.3.3.0.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\ryana\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512"
+  ],
+  "logs": []
+}

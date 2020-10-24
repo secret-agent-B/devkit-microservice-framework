@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Gateway</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Gateway.Configuration.AuthenticationConfiguration">
+            <summary>
+            The authentication configuration that are used for gateway and security API introspection.
+            </summary>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.APIResourceName">
+            <summary>
+            Gets or sets the name of the gateway API.
+            </summary>
+            <value>
+            The name of the gateway API.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.APIResourceSecret">
+            <summary>
+            Gets or sets the API secret.
+            </summary>
+            <value>
+            The API secret.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.AuthenticationProviderKey">
+            <summary>
+            Gets or sets the name of the API.
+            !!!IMPORTANT!!! This is equivalent to the Ocelot (configuration)'s AuthenticationProviderKey.
+            This tells Ocelot which authentication provider to use to validate the JWT token.
+            </summary>
+            <value>
+            The name of the API.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.CacheDurationInMinutes">
+            <summary>
+            Gets or sets the cache duration in minutes.
+            </summary>
+            <value>
+            The cache duration in minutes.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.IdentityServerHost">
+            <summary>
+            Gets or sets the authority.
+            !!!IMPORTANT!!! This value is the host URL for where the identity server is hosted.
+            This is where the gateway pass the JWT token to for introspection.
+            </summary>
+            <value>
+            The authority.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.RequireHttpsMetadata">
+            <summary>
+            Gets or sets a value indicating whether [require HTTPS metadata].
+            </summary>
+            <value>
+              <c>true</c> if [require HTTPS metadata]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthenticationConfiguration.RoleClaimType">
+            <summary>
+            Gets or sets the type of the role claim.
+            </summary>
+            <value>
+            The type of the role claim.
+            </value>
+        </member>
+        <member name="T:Devkit.Gateway.Configuration.AuthorizationPolicy">
+            <summary>
+            The authorization policy that defines what the gateway needs to authorize a request.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Configuration.AuthorizationPolicy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Gateway.Configuration.AuthorizationPolicy"/> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthorizationPolicy.ClaimRequirements">
+            <summary>
+            Gets or sets the claim requirements.
+            </summary>
+            <value>
+            The claim requirements.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.AuthorizationPolicy.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="T:Devkit.Gateway.Configuration.ClaimRequirement">
+            <summary>
+            A claim requirement.
+            </summary>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.ClaimRequirement.Requirements">
+            <summary>
+            Gets or sets the requirements.
+            </summary>
+            <value>
+            The requirements.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.ClaimRequirement.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="T:Devkit.Gateway.Configuration.SecurityConfiguration">
+            <summary>
+            The security configuration.
+            </summary>
+        </member>
+        <member name="F:Devkit.Gateway.Configuration.SecurityConfiguration._section">
+            <summary>
+            The configuration section.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Configuration.SecurityConfiguration.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Gateway.Configuration.SecurityConfiguration"/> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.SecurityConfiguration.AuthenticationConfiguration">
+            <summary>
+            Gets or sets the authentication options.
+            </summary>
+            <value>
+            The authentication options.
+            </value>
+        </member>
+        <member name="P:Devkit.Gateway.Configuration.SecurityConfiguration.AuthorizationPolicies">
+            <summary>
+            Gets or sets the authorization policies.
+            </summary>
+            <value>
+            The authorization policies.
+            </value>
+        </member>
+        <member name="T:Devkit.Gateway.Controllers.HomeController">
+            <summary>
+            THe home controller.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
+        </member>
+        <member name="M:Devkit.Gateway.Controllers.HomeController.Index">
+            <summary>
+            Indexes this instance.
+            </summary>
+            <returns>An action result.</returns>
+        </member>
+        <member name="T:Devkit.Gateway.Extensions.OcelotExtensions">
+            <summary>
+            Ocelot extensions.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.OcelotExtensions.AddOcelot(Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.String,System.String)">
+            <summary>
+            Adds the ocelot.
+            </summary>
+            <param name="builder">The builder.</param>
+            <param name="folder">The folder.</param>
+            <param name="gatewayType">Type of the gateway.</param>
+            <param name="environmentName">Name of the environment.</param>
+            <returns>
+            The configuration builder.
+            </returns>
+        </member>
+        <member name="T:Devkit.Gateway.Extensions.SecurityExtensions">
+            <summary>
+            The authorization extension.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.AddSecurity(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the authorization to IdentityServer4 host.
+            </summary>
+            <param name="services">The services.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.AddAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Devkit.Gateway.Configuration.AuthenticationConfiguration)">
+            <summary>
+            Adds the authentication.
+            </summary>
+            <param name="services">The services.</param>
+            <param name="authConfig">The authentication options.</param>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.AddAuthorization(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.ICollection{Devkit.Gateway.Configuration.AuthorizationPolicy})">
+            <summary>
+            Adds the authorization.
+            </summary>
+            <param name="services">The services.</param>
+            <param name="authorizationPolicies">The authorization policies.</param>
+        </member>
+        <member name="T:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents">
+            <summary>
+            The debug JWT bearer events.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents" />
+        </member>
+        <member name="F:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents._logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents.#ctor(Serilog.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents.AuthenticationFailed(Microsoft.AspNetCore.Authentication.JwtBearer.AuthenticationFailedContext)">
+            <summary>
+            Authentications the failed.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents.Challenge(Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerChallengeContext)">
+            <summary>
+            Challenges the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents.MessageReceived(Microsoft.AspNetCore.Authentication.JwtBearer.MessageReceivedContext)">
+            <summary>
+            Messages the received.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Devkit.Gateway.Extensions.SecurityExtensions.DebugJwtBearerEvents.TokenValidated(Microsoft.AspNetCore.Authentication.JwtBearer.TokenValidatedContext)">
+            <summary>
+            Tokens the validated.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="T:Devkit.Gateway.Program">
+            <summary>
+            The program runtime class.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>An IHostBuilder.</returns>
+        </member>
+        <member name="M:Devkit.Gateway.Program.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Devkit.Gateway.Startup">
+            <summary>
+            The startup class for the security API.
+            </summary>
+        </member>
+        <member name="F:Devkit.Gateway.Startup._defaultPolicy">
+            <summary>
+            Default Cors Policy name.
+            </summary>
+        </member>
+        <member name="M:Devkit.Gateway.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Gateway.Startup"/> class.
+            </summary>
+            <param name="env">The env.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:Devkit.Gateway.Startup.CustomConfigure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Setup middleware.
+            </summary>
+            <param name="app">The application.</param>
+        </member>
+        <member name="M:Devkit.Gateway.Startup.CustomConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure middlewares.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+    </members>
+</doc>

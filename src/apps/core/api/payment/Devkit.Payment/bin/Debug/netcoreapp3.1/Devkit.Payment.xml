@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Payment</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Payment.Contracts.IPaymentVendorService`1">
+            <summary>
+            The IPaymentVendorAPI.
+            </summary>
+        </member>
+        <member name="P:Devkit.Payment.Contracts.IPaymentVendorService`1.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.Contracts.IPaymentVendorService`1.Mediator">
+            <summary>
+            Gets the mediator.
+            </summary>
+            <value>
+            The mediator.
+            </value>
+        </member>
+        <member name="M:Devkit.Payment.Contracts.IPaymentVendorService`1.CreateInvoice(System.Double,System.String,System.String)">
+            <summary>
+            Creates the invoice.
+            </summary>
+            <param name="amount">The amount.</param>
+            <param name="transactionId">The transaction identifier.</param>
+            <param name="currency">The currency.</param>
+            <returns>A vendor transaction view model.</returns>
+        </member>
+        <member name="M:Devkit.Payment.Contracts.IPaymentVendorService`1.GetInvoiceStatus(System.String)">
+            <summary>
+            Gets the invoice status.
+            </summary>
+            <param name="invoiceId">The invoice identifier.</param>
+            <returns>A vendor transaction view model.</returns>
+        </member>
+        <member name="T:Devkit.Payment.PaymentVendorServiceBase`1">
+            <summary>
+            The VendorAPIBase is the base class for all payment vendors.
+            </summary>
+        </member>
+        <member name="M:Devkit.Payment.PaymentVendorServiceBase`1.#ctor(MediatR.IMediator,Microsoft.Extensions.Options.IOptions{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Payment.PaymentVendorServiceBase`1" /> class.
+            </summary>
+            <param name="mediator">The mediator.</param>
+            <param name="options">The options.</param>
+        </member>
+        <member name="P:Devkit.Payment.PaymentVendorServiceBase`1.Configuration">
+            <summary>
+            Gets the configuration.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.PaymentVendorServiceBase`1.Mediator">
+            <summary>
+            Gets the mediator.
+            </summary>
+            <value>
+            The mediator.
+            </value>
+        </member>
+        <member name="M:Devkit.Payment.PaymentVendorServiceBase`1.CreateInvoice(System.Double,System.String,System.String)">
+            <summary>
+            Creates the invoice.
+            </summary>
+            <param name="amount">The amount.</param>
+            <param name="transactionId">The transaction identifier.</param>
+            <param name="currency">The currency.</param>
+            <returns>A vendor transaction view model.</returns>
+        </member>
+        <member name="M:Devkit.Payment.PaymentVendorServiceBase`1.GetInvoiceStatus(System.String)">
+            <summary>
+            Gets the invoice status.
+            </summary>
+            <param name="invoiceId">The invoice identifier.</param>
+            <returns>A vendor transaction view model.</returns>
+        </member>
+        <member name="T:Devkit.Payment.ViewModels.VendorTransactionVM">
+            <summary>
+            The TransactionVM is the view model for.
+            </summary>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.Amount">
+            <summary>
+            Gets or sets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.AmountDue">
+            <summary>
+            Gets or sets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.CreatedAt">
+            <summary>
+            Gets or sets the created at.
+            </summary>
+            <value>
+            The created at.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.Currency">
+            <summary>
+            Gets or sets the currency.
+            </summary>
+            <value>
+            The currency.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.ExpiresAt">
+            <summary>
+            Gets or sets the expires at.
+            </summary>
+            <value>
+            The expires at.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.InvoiceId">
+            <summary>
+            Gets or sets the invoice identifier.
+            </summary>
+            <value>
+            The invoice identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.PaymentUrl">
+            <summary>
+            Gets or sets the payment URL.
+            </summary>
+            <value>
+            The payment URL.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.TransactionId">
+            <summary>
+            Gets or sets the transaction identifier.
+            </summary>
+            <value>
+            The transaction identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Payment.ViewModels.VendorTransactionVM.UpdatedAt">
+            <summary>
+            Gets or sets the updated at.
+            </summary>
+            <value>
+            The updated at.
+            </value>
+        </member>
+    </members>
+</doc>

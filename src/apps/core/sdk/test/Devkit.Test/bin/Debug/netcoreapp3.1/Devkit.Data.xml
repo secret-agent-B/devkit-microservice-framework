@@ -1,0 +1,484 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Data</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Data.DocumentBase">
+            <summary>
+            The document base class for anything that is saved into the database.
+            </summary>
+        </member>
+        <member name="P:Devkit.Data.DocumentBase.CreatedOn">
+            <summary>
+            Gets or sets the date created.
+            </summary>
+            <value>
+            The date created.
+            </value>
+        </member>
+        <member name="P:Devkit.Data.DocumentBase.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Data.DocumentBase.LastUpdatedOn">
+            <summary>
+            Gets or sets the date created.
+            </summary>
+            <value>
+            The date created.
+            </value>
+        </member>
+        <member name="T:Devkit.Data.Extensions.MongoDbExtension">
+            <summary>
+            The MongoDb extension class.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Extensions.MongoDbExtension.AddRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the mongo repository.
+            </summary>
+            <param name="services">The services.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Extensions.MongoDbExtension.AddSeedData``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Executes the seeder.
+            </summary>
+            <typeparam name="TSeeder">The type of the seeder.</typeparam>
+            <param name="services">The services.</param>
+            <param name="filePath">The file path.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="T:Devkit.Data.Interfaces.IRepository">
+            <summary>
+            The repository contract.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.Add``1(``0)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.Add``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.AddRangeWithAudit``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.AddWithAudit``1(``0)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.All``1">
+            <summary>
+            All instances.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <returns>A queryable collection of documents.</returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.CollectionExists``1">
+            <summary>
+            Collections the exists.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <returns>True if the collection exists.</returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Deletes the specified expression.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="expression">The expression.</param>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.GetCollection``1">
+            <summary>
+            Gets the collection.
+            </summary>
+            <typeparam name="T">Type of document.</typeparam>
+            <returns>The MongoCollection of the document type.</returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.GetMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Gets a collection using the specified expression as filter.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns>
+            A list of T.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.GetMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Int32,System.Int32)">
+            <summary>
+            Gets a paged collection using the specified expression as filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expression">The expression.</param>
+            <param name="page">The page.</param>
+            <param name="pageSize">Size of the page.</param>
+            <returns>A list of T.</returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.GetOneOrDefault``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Singles the specified expression.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns>A document.</returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{MongoDB.Driver.UpdateDefinitionBuilder{``0},MongoDB.Driver.UpdateDefinition{``0}})">
+            <summary>
+            Edits the specified record matching the filter.
+            </summary>
+            <typeparam name="T">Type of the document that needs to be updated.</typeparam>
+            <param name="filter">The filter.</param>
+            <param name="updateFunction">The update function.</param>
+            <returns>
+            The updated document.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.IRepository.UpdateWithAudit``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{MongoDB.Driver.UpdateDefinitionBuilder{``0},MongoDB.Driver.UpdateDefinition{``0}})">
+            <summary>
+            Edits the specified record matching the filter.
+            </summary>
+            <typeparam name="T">Type of the document that needs to be updated.</typeparam>
+            <param name="filter">The filter.</param>
+            <param name="updateFunction">The update function.</param>
+            <returns>
+            The updated document.
+            </returns>
+        </member>
+        <member name="T:Devkit.Data.Interfaces.ISeeder">
+            <summary>
+            The seeder interface.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Interfaces.ISeeder.Execute">
+            <summary>
+            Executes the seeding process.
+            </summary>
+        </member>
+        <member name="T:Devkit.Data.Interfaces.ISeederConfig">
+            <summary>
+            The seeder config contract.
+            </summary>
+        </member>
+        <member name="P:Devkit.Data.Interfaces.ISeederConfig.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="T:Devkit.Data.Repository">
+            <summary>
+            Repository for MongoDb.
+            </summary>
+        </member>
+        <member name="F:Devkit.Data.Repository._database">
+            <summary>
+            The database.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Repository.#ctor(Devkit.Data.RepositoryOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.Repository"/> class.
+            </summary>
+            <param name="optionsAccessor">The options accessor.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.Add``1(``0)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.Add``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.AddRangeWithAudit``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified items.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="items">The items.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.AddWithAudit``1(``0)">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.All``1">
+            <summary>
+            All instances.
+            </summary>
+            <typeparam name="T">The document type.</typeparam>
+            <returns>A queryable document collection.</returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.CollectionExists``1">
+            <summary>
+            Collections the exists.
+            </summary>
+            <typeparam name="T">The document type.</typeparam>
+            <returns>True if the collection exist.</returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Deletes the specified predicate.
+            </summary>
+            <typeparam name="T">The document type.</typeparam>
+            <param name="expression">The predicate.</param>
+        </member>
+        <member name="M:Devkit.Data.Repository.GetCollection``1">
+            <summary>
+            Gets the collection.
+            </summary>
+            <typeparam name="T">Type of document.</typeparam>
+            <returns>
+            The MongoCollection of the document type.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.GetMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Wheres the specified expression.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns>
+            A queryable collection of documents.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.GetMany``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Int32,System.Int32)">
+            <summary>
+            Wheres the specified expression.
+            </summary>
+            <typeparam name="T">The type of the document.</typeparam>
+            <param name="expression">The expression.</param>
+            <param name="page">The page.</param>
+            <param name="pageSize">Size of the page.</param>
+            <returns>
+            A queryable collection of documents.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.GetOneOrDefault``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Singles the specified expression.
+            </summary>
+            <typeparam name="T">The document type.</typeparam>
+            <param name="expression">The expression.</param>
+            <returns>A single instance of a document.</returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.Update``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{MongoDB.Driver.UpdateDefinitionBuilder{``0},MongoDB.Driver.UpdateDefinition{``0}})">
+            <summary>
+            Edits the specified record matching the filter.
+            </summary>
+            <typeparam name="T">Type of the document that needs to be updated.</typeparam>
+            <param name="filter">The filter.</param>
+            <param name="updateFunction">The update function.</param>
+            <returns>
+            The updated document.
+            </returns>
+        </member>
+        <member name="M:Devkit.Data.Repository.UpdateWithAudit``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{MongoDB.Driver.UpdateDefinitionBuilder{``0},MongoDB.Driver.UpdateDefinition{``0}})">
+            <summary>
+            Edits the specified filter.
+            </summary>
+            <typeparam name="T">Type of the document that needs to be updated.</typeparam>
+            <param name="filter">The filter.</param>
+            <param name="updateFunction">The update function.</param>
+            <returns>
+            The updated document.
+            </returns>
+        </member>
+        <member name="T:Devkit.Data.RepositoryOptions">
+            <summary>
+            The repository configuration.
+            </summary>
+        </member>
+        <member name="F:Devkit.Data.RepositoryOptions._section">
+            <summary>
+            The configuration section.
+            </summary>
+        </member>
+        <member name="P:Devkit.Data.RepositoryOptions.ConnectionString">
+            <summary>
+            Gets or sets the connection.
+            </summary>
+            <value>
+            The connection.
+            </value>
+        </member>
+        <member name="P:Devkit.Data.RepositoryOptions.DatabaseName">
+            <summary>
+            Gets or sets the name of the database.
+            </summary>
+            <value>
+            The name of the database.
+            </value>
+        </member>
+        <member name="T:Devkit.Data.Seeding.ExcelSeederBase">
+            <summary>
+            The base class for importing Excel seed file into the database.
+            </summary>
+            <seealso cref="T:Devkit.Data.Seeding.SeederBase`1" />
+        </member>
+        <member name="F:Devkit.Data.Seeding.ExcelSeederBase._fileInfo">
+            <summary>
+            The file information.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Seeding.ExcelSeederBase.#ctor(Devkit.Data.Interfaces.IRepository,Devkit.Data.Interfaces.ISeederConfig)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.Seeding.ExcelSeederBase" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+            <param name="seederConfig">The seeder configuration.</param>
+        </member>
+        <member name="M:Devkit.Data.Seeding.ExcelSeederBase.DeserializeTabToList``1(System.String)">
+            <summary>
+            Imports the excel to list.
+            </summary>
+            <typeparam name="T">The underlying type of the list.</typeparam>
+            <param name="tabName">Name of the tab.</param>
+            <returns>
+            A list of <typeparamref name="T" />.
+            </returns>
+            <exception cref="T:System.NotImplementedException">If a type does not have a conversion implementation.</exception>
+        </member>
+        <member name="M:Devkit.Data.Seeding.ExcelSeederBase.InitializeSource">
+            <summary>
+            Executes this instance.
+            </summary>
+        </member>
+        <member name="T:Devkit.Data.Seeding.JsonSeederBase`1">
+            <summary>
+            Json seeder base class.
+            </summary>
+            <typeparam name="TSource">The type of the seed.</typeparam>
+            <seealso cref="T:Devkit.Data.Seeding.SeederBase`1" />
+        </member>
+        <member name="F:Devkit.Data.Seeding.JsonSeederBase`1._seedFile">
+            <summary>
+            The seed file.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Seeding.JsonSeederBase`1.#ctor(Devkit.Data.Interfaces.IRepository,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.Seeding.JsonSeederBase`1" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+            <param name="seedPath">The seed path.</param>
+        </member>
+        <member name="M:Devkit.Data.Seeding.JsonSeederBase`1.InitializeSource">
+            <summary>
+            Executes this instance.
+            </summary>
+        </member>
+        <member name="T:Devkit.Data.Seeding.SeederBase`1">
+            <summary>
+            The seeder base.
+            </summary>
+            <typeparam name="TSource">The type of the source.</typeparam>
+            <seealso cref="T:Devkit.Data.Interfaces.ISeeder" />
+        </member>
+        <member name="M:Devkit.Data.Seeding.SeederBase`1.#ctor(Devkit.Data.Interfaces.IRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.Seeding.SeederBase`1" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="P:Devkit.Data.Seeding.SeederBase`1.Repository">
+            <summary>
+            Gets the repository.
+            </summary>
+            <value>
+            The repository.
+            </value>
+        </member>
+        <member name="P:Devkit.Data.Seeding.SeederBase`1.Source">
+            <summary>
+            Gets or sets the source.
+            </summary>
+            <value>
+            The source.
+            </value>
+        </member>
+        <member name="M:Devkit.Data.Seeding.SeederBase`1.Execute">
+            <summary>
+            Executes the seeding process.
+            </summary>
+        </member>
+        <member name="M:Devkit.Data.Seeding.SeederBase`1.InitializeSource">
+            <summary>
+            Executes this instance.
+            </summary>
+        </member>
+        <member name="T:Devkit.Data.Seeding.SeederConfig">
+            <summary>
+            The seeder config.
+            </summary>
+            <seealso cref="T:Devkit.Data.Interfaces.ISeederConfig" />
+        </member>
+        <member name="M:Devkit.Data.Seeding.SeederConfig.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.Seeding.SeederConfig" /> class.
+            </summary>
+            <param name="filePath">The file path.</param>
+        </member>
+        <member name="P:Devkit.Data.Seeding.SeederConfig.FilePath">
+            <summary>
+            Gets or sets the file path.
+            </summary>
+            <value>
+            The file path.
+            </value>
+        </member>
+        <member name="T:Devkit.Data.UpdateException">
+            <summary>
+            Mongo Db update exception.
+            </summary>
+            <seealso cref="T:MongoDB.Driver.MongoException" />
+        </member>
+        <member name="M:Devkit.Data.UpdateException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.UpdateException"/> class.
+            </summary>
+            <param name="message">The error message.</param>
+        </member>
+        <member name="M:Devkit.Data.UpdateException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Data.UpdateException"/> class.
+            </summary>
+            <param name="message">The error message.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+    </members>
+</doc>

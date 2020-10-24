@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.ServiceBus</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.ServiceBus.EndpointNameFormatter">
+            <summary>
+            An endpoint name formatter.
+            </summary>
+            <seealso cref="T:MassTransit.Definition.DefaultEndpointNameFormatter" />
+            <seealso cref="T:MassTransit.IEndpointNameFormatter" />
+        </member>
+        <member name="M:Devkit.ServiceBus.EndpointNameFormatter.MassTransit#IEndpointNameFormatter#Consumer``1">
+            <summary>
+            Consumers this instance.
+            </summary>
+            <typeparam name="T">The type of consumer.</typeparam>
+            <returns>An endpoint name.</returns>
+        </member>
+        <member name="T:Devkit.ServiceBus.Exceptions.IConsumerException">
+            <summary>
+            The IConsumerException is the exception that is thrown when an unhandled consumer exception occured.
+            </summary>
+        </member>
+        <member name="P:Devkit.ServiceBus.Exceptions.IConsumerException.ErrorMessage">
+            <summary>
+            Gets the message.
+            </summary>
+            <value>
+            The message.
+            </value>
+        </member>
+        <member name="T:Devkit.ServiceBus.Extensions.ServiceBusExtensions">
+            <summary>
+            The service bus extensions class.
+            </summary>
+        </member>
+        <member name="M:Devkit.ServiceBus.Extensions.ServiceBusExtensions.AddServiceBus``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Uses the service bus.
+            </summary>
+            <typeparam name="TConsumerRegistry">The type of the consumer registrar.</typeparam>
+            <param name="services">The services.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="M:Devkit.ServiceBus.Extensions.ServiceBusExtensions.UseAMQPServiceBus(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Ins the memory service bus.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IBusRegistry">
+            <summary>
+            The IServiceBusConfiguration configures message consumers for MassTransit.
+            </summary>
+        </member>
+        <member name="M:Devkit.ServiceBus.Interfaces.IBusRegistry.RegisterConsumers(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Configure message consumers.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="M:Devkit.ServiceBus.Interfaces.IBusRegistry.RegisterRequestClients(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Registers the request clients.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IListResponse`1">
+            <summary>
+            The IListResponse represents collection of T.
+            </summary>
+            <typeparam name="T">Underlying type of the response.</typeparam>
+        </member>
+        <member name="P:Devkit.ServiceBus.Interfaces.IListResponse`1.Items">
+            <summary>
+            Gets the items.
+            </summary>
+            <value>
+            The items.
+            </value>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IMessage`1">
+            <summary>
+            The IMessage is the marker interface for messages.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IMessage">
+            <summary>
+            The IMessage is the marker interface for messages.
+            </summary>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IMessageConsumer`1">
+            <summary>
+            The IMessageConsumer.
+            </summary>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IMessageConsumer`2">
+            <summary>
+            The IMessageConsumer.
+            </summary>
+        </member>
+        <member name="T:Devkit.ServiceBus.Interfaces.IServiceBusInitializer">
+            <summary>
+            The IServiceBusInitializer is the contract for service bus initializer.
+            </summary>
+        </member>
+        <member name="M:Devkit.ServiceBus.Interfaces.IServiceBusInitializer.Initialize">
+            <summary>
+            Connects this instance.
+            </summary>
+            <returns>
+            A service collection.
+            </returns>
+        </member>
+        <member name="T:Devkit.ServiceBus.MessageConsumerBase`2">
+            <summary>
+            The MessageConsumerBase the base class for message consumers.
+            </summary>
+            <typeparam name="TMessage">The type of the message.</typeparam>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <seealso cref="T:Devkit.ServiceBus.Interfaces.IMessageConsumer`1" />
+        </member>
+        <member name="M:Devkit.ServiceBus.MessageConsumerBase`2.Consume(MassTransit.ConsumeContext{`0})">
+            <summary>
+            Consumes the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="M:Devkit.ServiceBus.MessageConsumerBase`2.ConsumeMessage(MassTransit.ConsumeContext{`0})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.ServiceBus.ServiceBusConfiguration">
+            <summary>
+            The service bus options class.
+            </summary>
+        </member>
+        <member name="F:Devkit.ServiceBus.ServiceBusConfiguration.Section">
+            <summary>
+            The configuration section.
+            </summary>
+        </member>
+        <member name="P:Devkit.ServiceBus.ServiceBusConfiguration.Heartbeat">
+            <summary>
+            Gets or sets the heartbeat in seconds.
+            </summary>
+            <value>
+            The heartbeat in seconds.
+            </value>
+        </member>
+        <member name="P:Devkit.ServiceBus.ServiceBusConfiguration.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:Devkit.ServiceBus.ServiceBusConfiguration.Password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+            <value>
+            The password.
+            </value>
+        </member>
+        <member name="P:Devkit.ServiceBus.ServiceBusConfiguration.Port">
+            <summary>
+            Gets or sets the port.
+            </summary>
+            <value>
+            The port.
+            </value>
+        </member>
+        <member name="P:Devkit.ServiceBus.ServiceBusConfiguration.Username">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="T:Devkit.ServiceBus.Services.BusHostedService">
+            <summary>
+            The bus hosted service establishes the connection to RabbitMQ through MassTransit.
+            </summary>
+        </member>
+        <member name="F:Devkit.ServiceBus.Services.BusHostedService._busControl">
+            <summary>
+            The bus control.
+            </summary>
+        </member>
+        <member name="M:Devkit.ServiceBus.Services.BusHostedService.#ctor(MassTransit.IBusControl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.ServiceBus.Services.BusHostedService" /> class.
+            </summary>
+            <param name="busControl">The bus control.</param>
+        </member>
+        <member name="M:Devkit.ServiceBus.Services.BusHostedService.StartAsync(System.Threading.CancellationToken)">
+            <summary>Triggered when the application host is ready to start the service.</summary>
+            <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Devkit.ServiceBus.Services.BusHostedService.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Triggered when the application host is performing a graceful shutdown.
+            </summary>
+            <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+            <returns>A task.</returns>
+        </member>
+    </members>
+</doc>

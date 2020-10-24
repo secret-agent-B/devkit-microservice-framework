@@ -1,0 +1,11 @@
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\bin\Debug\netstandard2.0\Devkit.Data.deps.json
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\bin\Debug\netstandard2.0\Devkit.Data.dll
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\bin\Debug\netstandard2.0\Devkit.Data.pdb
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\bin\Debug\netstandard2.0\Devkit.Data.xml
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.csprojAssemblyReference.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.AssemblyInfoInputs.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.AssemblyInfo.cs
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.csproj.CoreCompileInputs.cache
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.dll
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.xml
+F:\Source\Repos\devkit-microservice-framework\src\apps\core\sdk\data\Devkit.Data\obj\Debug\netstandard2.0\Devkit.Data.pdb

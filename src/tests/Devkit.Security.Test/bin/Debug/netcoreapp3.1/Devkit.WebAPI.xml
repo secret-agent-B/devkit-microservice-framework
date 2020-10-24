@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.WebAPI</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.WebAPI.APIDefinition">
+            <summary>
+            The API definition object.
+            </summary>
+        </member>
+        <member name="P:Devkit.WebAPI.APIDefinition.Description">
+            <summary>
+            Gets or sets the description.
+            </summary>
+            <value>
+            The description.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.APIDefinition.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.APIDefinition.Version">
+            <summary>
+            Gets or sets the version.
+            </summary>
+            <value>
+            The version.
+            </value>
+        </member>
+        <member name="T:Devkit.WebAPI.AppStartupBase">
+            <summary>
+            The application startup base.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.AppStartupBase._apiDefinition">
+            <summary>
+            The API definition.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.WebAPI.AppStartupBase" /> class.
+            </summary>
+            <param name="env">The env.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="P:Devkit.WebAPI.AppStartupBase.Configuration">
+            <summary>
+            Gets the application configuration.
+            </summary>
+            <value>
+            IConfigurationRoot.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.AppStartupBase.MediatorAssemblies">
+            <summary>
+            Gets the application mediator assemblies.
+            </summary>
+            <value>
+            MediatorAssemblies.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.AppStartupBase.ValidationAssemblies">
+            <summary>
+            Gets the application validation assemblies.
+            </summary>
+            <value>
+            ValidationAssemblies.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.AppStartupBase.WebHostEnvironment">
+            <summary>
+            Gets the web host environment.
+            </summary>
+            <value>
+            The web host environment.
+            </value>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configures the specified application.
+            </summary>
+            <param name="app">The application.</param>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the services.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.AddConsumers(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Adds the consumers.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.CustomConfigure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Setup middleware.
+            </summary>
+            <param name="app">The application.</param>
+        </member>
+        <member name="M:Devkit.WebAPI.AppStartupBase.CustomConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure middlewares.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="T:Devkit.WebAPI.DevkitControllerBase">
+            <summary>
+            The Devkit controller base class.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.DevkitControllerBase._mediator">
+            <summary>
+            The mediator.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.DevkitControllerBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.WebAPI.DevkitControllerBase" /> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.WebAPI.DevkitControllerBase.Mediator">
+            <summary>
+            Gets the mediator.
+            </summary>
+            <value>
+            The mediator.
+            </value>
+        </member>
+        <member name="T:Devkit.WebAPI.Extensions.SetupExtension">
+            <summary>
+            The setup extension methods.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.Extensions.SetupExtension.GetAPIDefinition(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Gets the API definition.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>An API definition.</returns>
+        </member>
+        <member name="T:Devkit.WebAPI.Extensions.SwaggerExtension">
+            <summary>
+            The Open API 3 extension methods class.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.Extensions.SwaggerExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,Devkit.WebAPI.APIDefinition)">
+            <summary>
+            Adds the swagger.
+            </summary>
+            <param name="services">The services.</param>
+            <param name="apiDefinition">The API definition.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="M:Devkit.WebAPI.Extensions.SwaggerExtension.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,System.String)">
+            <summary>
+            Adds the Swagger service.
+            </summary>
+            <param name="services">The services.</param>
+            <param name="title">The title.</param>
+            <param name="description">The description.</param>
+            <param name="version">The version.</param>
+            <returns>
+            The service collection.
+            </returns>
+        </member>
+        <member name="M:Devkit.WebAPI.Extensions.SwaggerExtension.UseSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Devkit.WebAPI.APIDefinition)">
+            <summary>
+            Uses the swagger.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="apiDefinition">The API definition.</param>
+            <returns>
+            The application builder.
+            </returns>
+        </member>
+        <member name="M:Devkit.WebAPI.Extensions.SwaggerExtension.UseSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.String)">
+            <summary>
+            Uses the swagger.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="title">The title.</param>
+            <param name="version">The version.</param>
+            <returns>
+            The application builder.
+            </returns>
+        </member>
+        <member name="T:Devkit.WebAPI.Filters.PipelineFilterAttribute">
+            <summary>
+            Custom exception filter attribute.
+            </summary>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.ExceptionFilterAttribute" />
+        </member>
+        <member name="M:Devkit.WebAPI.Filters.PipelineFilterAttribute.FindInnermostException(System.Exception)">
+            <summary>
+            Finds the innermost exception.
+            </summary>
+            <param name="exception">The exception.</param>
+            <returns>
+            An exception.
+            </returns>
+        </member>
+        <member name="M:Devkit.WebAPI.Filters.PipelineFilterAttribute.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            Catches validation issues that is triggered by RequestValidationBehavior.
+            </summary>
+            <param name="context">The exception context.</param>
+            <inheritdoc />
+        </member>
+        <member name="T:Devkit.WebAPI.ServiceRegistry.ConsulHostedService">
+            <summary>
+            The consul hosted service that is used for registration to service registry.
+            </summary>
+            <seealso cref="T:Microsoft.Extensions.Hosting.IHostedService" />
+        </member>
+        <member name="F:Devkit.WebAPI.ServiceRegistry.ConsulHostedService._consulClient">
+            <summary>
+            The Consul client.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.ServiceRegistry.ConsulHostedService._consulConfig">
+            <summary>
+            The Consul configuration.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.ServiceRegistry.ConsulHostedService._logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.ServiceRegistry.ConsulHostedService._cts">
+            <summary>
+            The cancellation token source.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.ServiceRegistry.ConsulHostedService.#ctor(Consul.IConsulClient,Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration,Microsoft.Extensions.Logging.ILogger{Devkit.WebAPI.ServiceRegistry.ConsulHostedService})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.WebAPI.ServiceRegistry.ConsulHostedService"/> class.
+            </summary>
+            <param name="consulClient">The consul client.</param>
+            <param name="consulConfig">The consul configuration.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Devkit.WebAPI.ServiceRegistry.ConsulHostedService.StartAsync(System.Threading.CancellationToken)">
+            <summary>
+            Triggered when the application host is ready to start the service.
+            </summary>
+            <param name="cancellationToken">Indicates that the start process has been aborted.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Devkit.WebAPI.ServiceRegistry.ConsulHostedService.StopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Triggered when the application host is performing a graceful shutdown.
+            </summary>
+            <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="T:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration">
+            <summary>
+            Consul service configuration used for microservice registration into Consul.
+            </summary>
+        </member>
+        <member name="F:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.Section">
+            <summary>
+            The consul configuration.
+            </summary>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.ConsulHost">
+            <summary>
+            Gets or sets the consul host.
+            </summary>
+            <value>
+            The consul host.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.DataCenter">
+            <summary>
+            Gets or sets the data center.
+            </summary>
+            <value>
+            The data center.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.Gateway">
+            <summary>
+            Gets or sets the gateway route.
+            </summary>
+            <value>
+            The gateway route.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.LiveCheckInSeconds">
+            <summary>
+            Gets or sets the live check in seconds.
+            </summary>
+            <value>
+            The check in seconds.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.Meta">
+            <summary>
+            Gets the meta.
+            </summary>
+            <value>
+            The meta.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.Port">
+            <summary>
+            Gets or sets the port.
+            </summary>
+            <value>
+            The port.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.ServiceAddress">
+            <summary>
+            Gets or sets the service address.
+            </summary>
+            <value>
+            The service address.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.ServiceId">
+            <summary>
+            Gets or sets the service id.
+            </summary>
+            <value>
+            The service id.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.ServiceName">
+            <summary>
+            Gets or sets the service names.
+            </summary>
+            <value>
+            The service names.
+            </value>
+        </member>
+        <member name="P:Devkit.WebAPI.ServiceRegistry.ConsulServiceConfiguration.Tags">
+            <summary>
+            Gets or sets the tags.
+            </summary>
+            <value>
+            The tags.
+            </value>
+        </member>
+        <member name="T:Devkit.WebAPI.ServiceRegistry.ServiceRegistryExtension">
+            <summary>
+            The service registry extension method class.
+            </summary>
+        </member>
+        <member name="M:Devkit.WebAPI.ServiceRegistry.ServiceRegistryExtension.AddServiceRegistry(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the service registry.
+            </summary>
+            <param name="services">The services.</param>
+            <returns>A service collection.</returns>
+        </member>
+    </members>
+</doc>

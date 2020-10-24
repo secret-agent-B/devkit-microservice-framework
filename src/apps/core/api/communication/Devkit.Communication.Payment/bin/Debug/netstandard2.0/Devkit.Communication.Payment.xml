@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Communication.Payment</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Communication.Payment.DTOs.IInvoiceDTO">
+            <summary>
+            The IInvoiceDTO is the data transfer object for invoices.
+            </summary>
+        </member>
+        <member name="P:Devkit.Communication.Payment.DTOs.IInvoiceDTO.Amount">
+            <summary>
+            Gets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.DTOs.IInvoiceDTO.InvoiceId">
+            <summary>
+            Gets the invoice identifier.
+            </summary>
+            <value>
+            The invoice identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.DTOs.IInvoiceDTO.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>
+            The status.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.DTOs.IInvoiceDTO.TransactionId">
+            <summary>
+            Gets the transaction identifier.
+            </summary>
+            <value>
+            The transaction identifier.
+            </value>
+        </member>
+        <member name="T:Devkit.Communication.Payment.Messages.ICreateInvoice">
+            <summary>
+            The ICreateInvoice is the request that is sent to generate an invoice.
+            </summary>
+        </member>
+        <member name="P:Devkit.Communication.Payment.Messages.ICreateInvoice.Amount">
+            <summary>
+            Gets the amount.
+            </summary>
+            <value>
+            The amount.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.Messages.ICreateInvoice.Currency">
+            <summary>
+            Gets the currency.
+            </summary>
+            <value>
+            The currency.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.Messages.ICreateInvoice.PaymentVendorCode">
+            <summary>
+            Gets the payment vendor code.
+            </summary>
+            <value>
+            The payment vendor code.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Payment.Messages.ICreateInvoice.TransactionId">
+            <summary>
+            Gets the transaction identifier.
+            </summary>
+            <value>
+            The transaction identifier.
+            </value>
+        </member>
+    </members>
+</doc>

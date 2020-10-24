@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Communication.Security</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Communication.Security.DTOs.IUserDTO">
+            <summary>
+            The IUserDTO is the response to IGetUser message.
+            </summary>
+        </member>
+        <member name="P:Devkit.Communication.Security.DTOs.IUserDTO.FirstName">
+            <summary>
+            Gets the first name.
+            </summary>
+            <value>
+            The first name.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Security.DTOs.IUserDTO.LastName">
+            <summary>
+            Gets the last name.
+            </summary>
+            <value>
+            The last name.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Security.DTOs.IUserDTO.PhoneNumber">
+            <summary>
+            Gets the phone number.
+            </summary>
+            <value>
+            The phone number.
+            </value>
+        </member>
+        <member name="P:Devkit.Communication.Security.DTOs.IUserDTO.UserName">
+            <summary>
+            Gets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="T:Devkit.Communication.Security.Messages.IGetUser">
+            <summary>
+            The IGetUser is the message for getting user information.
+            </summary>
+        </member>
+        <member name="P:Devkit.Communication.Security.Messages.IGetUser.UserName">
+            <summary>
+            Gets or sets the name of the user.
+            </summary>
+            <value>
+            The name of the user.
+            </value>
+        </member>
+        <member name="T:Devkit.Communication.Security.Messages.IGetUsers">
+            <summary>
+            The IGetUsers is a request that pulls 2 or more user information.
+            </summary>
+        </member>
+        <member name="P:Devkit.Communication.Security.Messages.IGetUsers.UserNames">
+            <summary>
+            Gets the user names.
+            </summary>
+            <value>
+            The user names.
+            </value>
+        </member>
+    </members>
+</doc>

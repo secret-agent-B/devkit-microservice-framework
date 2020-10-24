@@ -1,0 +1,452 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.FileStore</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileCommand">
+            <summary>
+            The request for saving a file into the database.
+            </summary>
+        </member>
+        <member name="P:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileCommand.Contents">
+            <summary>
+            Gets or sets the contents.
+            </summary>
+            <value>
+            The contents.
+            </value>
+        </member>
+        <member name="P:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileCommand.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
+        </member>
+        <member name="T:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileHandler">
+            <summary>
+            The request handler for UploadFileCommand.
+            </summary>
+        </member>
+        <member name="F:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileHandler._fileStoreRepository">
+            <summary>
+            The file store repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileHandler.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileHandler" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileHandler.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            The code that is executed to perform the command or query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="T:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileValidator">
+            <summary>
+            The validator for UploadFileCommand.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.Files.Commands.UploadFile.UploadFileValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileHandler">
+            <summary>
+            The handler for DownloadFileQuery.
+            </summary>
+        </member>
+        <member name="F:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileHandler._fileStoreRepository">
+            <summary>
+            The file store repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileHandler.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileHandler"/> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileHandler.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            The code that is executed to perform the command or query.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileQuery">
+            <summary>
+            The query that is sent to the file-store API for downloading a file.
+            </summary>
+            <seealso cref="T:Devkit.Patterns.CQRS.Query.QueryRequestBase`1" />
+        </member>
+        <member name="P:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileQuery.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="T:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileValidator">
+            <summary>
+            Validator for DownloadFileQuery.
+            </summary>
+            <seealso cref="T:FluentValidation.AbstractValidator`1" />
+        </member>
+        <member name="M:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileValidator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileValidator"/> class.
+            </summary>
+        </member>
+        <member name="T:Devkit.FileStore.Business.ViewModels.FileVM">
+            <summary>
+            A FileVM is a representation of a file that can be uploaded or downloaded into the FileStore API.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Business.ViewModels.FileVM.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.ViewModels.FileVM"/> class.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Business.ViewModels.FileVM.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Business.ViewModels.FileVM" /> class.
+            </summary>
+            <param name="content">The content.</param>
+        </member>
+        <member name="P:Devkit.FileStore.Business.ViewModels.FileVM.Contents">
+            <summary>
+            Gets the content.
+            </summary>
+            <value>
+            The content.
+            </value>
+        </member>
+        <member name="P:Devkit.FileStore.Business.ViewModels.FileVM.CreatedOn">
+            <summary>
+            Gets or sets the created on.
+            </summary>
+            <value>
+            The created on.
+            </value>
+        </member>
+        <member name="P:Devkit.FileStore.Business.ViewModels.FileVM.FileName">
+            <summary>
+            Gets or sets the name of the file.
+            </summary>
+            <value>
+            The name of the file.
+            </value>
+        </member>
+        <member name="P:Devkit.FileStore.Business.ViewModels.FileVM.FileSize">
+            <summary>
+            Gets or sets the size.
+            </summary>
+            <value>
+            The size.
+            </value>
+        </member>
+        <member name="P:Devkit.FileStore.Business.ViewModels.FileVM.Id">
+            <summary>
+            Gets or sets the identifier.
+            </summary>
+            <value>
+            The identifier.
+            </value>
+        </member>
+        <member name="T:Devkit.FileStore.Controllers.FilesController">
+            <summary>
+            The files controller.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Controllers.FilesController.Download(Devkit.FileStore.Business.Files.Queries.DownloadFile.DownloadFileQuery)">
+            <summary>
+            Downloads the specified request.
+            </summary>
+            <param name="request">The request.</param>
+            <returns>
+            The file object.
+            </returns>
+        </member>
+        <member name="M:Devkit.FileStore.Controllers.FilesController.Upload(System.Collections.Generic.IList{Microsoft.AspNetCore.Http.IFormFile})">
+            <summary>
+            Uploads the specified files.
+            </summary>
+            <param name="files">The files.</param>
+            <returns>
+            The ids of the uploaded files.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.Data.FileStoreRepository">
+            <summary>
+            The file store repository.
+            </summary>
+            <seealso cref="T:Devkit.Data.Repository" />
+            <seealso cref="T:Devkit.FileStore.Interfaces.IFileStoreRepository" />
+        </member>
+        <member name="F:Devkit.FileStore.Data.FileStoreRepository._database">
+            <summary>
+            The database.
+            </summary>
+        </member>
+        <member name="F:Devkit.FileStore.Data.FileStoreRepository._gridFs">
+            <summary>
+            The grid fs.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Data.FileStoreRepository.#ctor(Devkit.Data.RepositoryOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Data.FileStoreRepository"/> class.
+            </summary>
+            <param name="optionsAccessor">The options accessor.</param>
+        </member>
+        <member name="M:Devkit.FileStore.Data.FileStoreRepository.Delete(System.String)">
+            <summary>
+            Deletes the specified identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Devkit.FileStore.Data.FileStoreRepository.Download(System.String)">
+            <summary>
+            Downloads the specified identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>
+            The downloaded file.
+            </returns>
+        </member>
+        <member name="M:Devkit.FileStore.Data.FileStoreRepository.Upload(System.String,System.Collections.Generic.IList{System.Byte})">
+            <summary>
+            Uploads the specified stream.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="content">The content.</param>
+            <returns>
+            The uploaded file.
+            </returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Devkit.FileStore.Data.FileStoreRepository.Upload(System.String,System.String)">
+            <summary>
+            Uploads the specified content.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="content">The content.</param>
+            <returns>
+            The uploaded file.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.Interfaces.IFileStoreRepository">
+            <summary>
+            The file store repository.
+            </summary>
+            <seealso cref="T:Devkit.Data.Interfaces.IRepository" />
+        </member>
+        <member name="M:Devkit.FileStore.Interfaces.IFileStoreRepository.Delete(System.String)">
+            <summary>
+            Deletes the specified identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Devkit.FileStore.Interfaces.IFileStoreRepository.Download(System.String)">
+            <summary>
+            Downloads the specified identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns>The uploaded object.</returns>
+        </member>
+        <member name="M:Devkit.FileStore.Interfaces.IFileStoreRepository.Upload(System.String,System.Collections.Generic.IList{System.Byte})">
+            <summary>
+            Uploads the specified stream.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="content">The content.</param>
+            <returns>
+            A string that represents the id of the uploaded file.
+            </returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Devkit.FileStore.Interfaces.IFileStoreRepository.Upload(System.String,System.String)">
+            <summary>
+            Uploads the specified content.
+            </summary>
+            <param name="fileName">Name of the file.</param>
+            <param name="content">The content.</param>
+            <returns>
+            A string that represents the id of the uploaded file.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.Program">
+            <summary>
+            The runtime class for this API.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates the host builder.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns>An IHostBuilder.</returns>
+        </member>
+        <member name="M:Devkit.FileStore.Program.Main(System.String[])">
+            <summary>
+            Defines the entry point of the application.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="T:Devkit.FileStore.ServiceBus.Consumers.DeleteFileConsumer">
+            <summary>
+            The DeleteFileConsumer is the consumer for IDeleteFile message.
+            </summary>
+            <seealso cref="T:Devkit.ServiceBus.MessageConsumerBase`2" />
+        </member>
+        <member name="F:Devkit.FileStore.ServiceBus.Consumers.DeleteFileConsumer._repository">
+            <summary>
+            The file repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.DeleteFileConsumer.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.ServiceBus.Consumers.DeleteFileConsumer"/> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.DeleteFileConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.FileStore.ServiceBus.Consumers.IDownloadFile})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.ServiceBus.Consumers.DownloadFileConsumer">
+            <summary>
+            The consumer for IDownloadFileRequest message.
+            </summary>
+            <seealso cref="T:MassTransit.IConsumer`1" />
+        </member>
+        <member name="F:Devkit.FileStore.ServiceBus.Consumers.DownloadFileConsumer._repository">
+            <summary>
+            The file store repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.DownloadFileConsumer.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.ServiceBus.Consumers.DownloadFileConsumer" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.DownloadFileConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.FileStore.ServiceBus.Consumers.IDownloadFile})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.ServiceBus.Consumers.UploadBase64ImageConsumer">
+            <summary>
+            The UploadBase64ImageConsumer is the consumer for IUploadBase64ImageConsumer.
+            </summary>
+        </member>
+        <member name="F:Devkit.FileStore.ServiceBus.Consumers.UploadBase64ImageConsumer._repository">
+            <summary>
+            The file store repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.UploadBase64ImageConsumer.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.ServiceBus.Consumers.UploadBase64ImageConsumer" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.UploadBase64ImageConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.Communication.FileStore.Messages.IUploadBase64Image})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.FileStore.ServiceBus.Consumers.UploadFileConsumer">
+            <summary>
+            The UploadFileConsumer consumes the IUploadFile message.
+            </summary>
+            <seealso cref="T:MassTransit.IConsumer`1" />
+        </member>
+        <member name="F:Devkit.FileStore.ServiceBus.Consumers.UploadFileConsumer._repository">
+            <summary>
+            The file store repository.
+            </summary>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.UploadFileConsumer.#ctor(Devkit.FileStore.Interfaces.IFileStoreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.ServiceBus.Consumers.UploadFileConsumer" /> class.
+            </summary>
+            <param name="repository">The repository.</param>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.Consumers.UploadFileConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.Communication.FileStore.Messages.IUploadFile})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="T:Devkit.FileStore.ServiceBus.FileStoreRegistry">
+            <summary>
+            The FileStore API service bus registry.
+            </summary>
+            <seealso cref="T:Devkit.ServiceBus.Interfaces.IBusRegistry" />
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.FileStoreRegistry.RegisterConsumers(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Configure message consumers.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="M:Devkit.FileStore.ServiceBus.FileStoreRegistry.RegisterRequestClients(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Registers the request clients.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="T:Devkit.FileStore.Startup">
+            <summary>
+            The Startup class for the FileStore API that sets up the services and DI.
+            </summary>
+            <seealso cref="T:Devkit.WebAPI.AppStartupBase" />
+        </member>
+        <member name="M:Devkit.FileStore.Startup.#ctor(Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.FileStore.Startup"/> class.
+            </summary>
+            <param name="env">The env.</param>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:Devkit.FileStore.Startup.CustomConfigure(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Setup middleware.
+            </summary>
+            <param name="app">The application.</param>
+        </member>
+        <member name="M:Devkit.FileStore.Startup.CustomConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure middlewares.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+    </members>
+</doc>

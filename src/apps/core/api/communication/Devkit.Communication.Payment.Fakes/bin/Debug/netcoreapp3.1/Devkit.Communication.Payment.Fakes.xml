@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Communication.Payment.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Communication.Payment.Fakes.Consumers.FakeCreateInvoiceConsumer">
+            <summary>
+            The FakeCreateInvoiceConsumer consumes the ICreateInvoice request.
+            </summary>
+        </member>
+        <member name="M:Devkit.Communication.Payment.Fakes.Consumers.FakeCreateInvoiceConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.Communication.Payment.Messages.ICreateInvoice})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Devkit.Test</name>
+    </assembly>
+    <members>
+        <member name="T:Devkit.Test.AppTestFixture`1">
+            <summary>
+            Application test fixture to generate the test host.
+            </summary>
+            <typeparam name="TStartup">The type of the startup.</typeparam>
+            <seealso cref="T:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1" />
+        </member>
+        <member name="F:Devkit.Test.AppTestFixture`1._runner">
+            <summary>
+            The runner.
+            </summary>
+        </member>
+        <member name="F:Devkit.Test.AppTestFixture`1._configuration">
+            <summary>
+            The configuration.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.AppTestFixture`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.AppTestFixture`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Test.AppTestFixture`1.RepositoryConfiguration">
+            <summary>
+            Gets the repository configuration.
+            </summary>
+            <value>
+            The repository configuration.
+            </value>
+        </member>
+        <member name="M:Devkit.Test.AppTestFixture`1.ConfigureTestServices(System.Action{Microsoft.Extensions.DependencyInjection.IServiceCollection})">
+            <summary>
+            Configures the services.
+            </summary>
+            <param name="configuration">The configuration.</param>
+        </member>
+        <member name="M:Devkit.Test.AppTestFixture`1.ConfigureWebHost(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Gives a fixture an opportunity to configure the application before it gets built.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder" /> for the application.</param>
+        </member>
+        <member name="M:Devkit.Test.AppTestFixture`1.CreateWebHostBuilder">
+            <summary>
+            Creates a <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder" /> used to set up <see cref="T:Microsoft.AspNetCore.TestHost.TestServer" />.
+            </summary>
+            <returns>
+            A <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder" /> instance.
+            </returns>
+            <remarks>
+            The default implementation of this method looks for a <c>public static IWebHostBuilder CreateWebHostBuilder(string[] args)</c>
+            method defined on the entry point of the assembly of TEntryPoint and invokes it passing an empty string
+            array as arguments.
+            </remarks>
+        </member>
+        <member name="M:Devkit.Test.AppTestFixture`1.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <param name="disposing"><see langword="true" /> to release both managed and unmanaged resources;
+            <see langword="false" /> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:Devkit.Test.FakerBase`1">
+            <summary>
+            The EntityFaker is creates test instances of a specified type.
+            </summary>
+            <typeparam name="T">Type of object to fake.</typeparam>
+            <seealso cref="T:Devkit.Test.Interfaces.IFaker`1" />
+        </member>
+        <member name="M:Devkit.Test.FakerBase`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.FakerBase`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Test.FakerBase`1.Faker">
+            <summary>
+            Gets the faker.
+            </summary>
+            <value>
+            The faker.
+            </value>
+        </member>
+        <member name="M:Devkit.Test.FakerBase`1.Generate">
+            <summary>
+            Generates this instance.
+            </summary>
+            <returns>
+            An instance of T.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.FakerBase`1.Generate(System.Int32)">
+            <summary>
+            Generates the specified count.
+            </summary>
+            <param name="count">The count.</param>
+            <returns>
+            A list of T.
+            </returns>
+        </member>
+        <member name="T:Devkit.Test.IntegrationTestBase`2">
+            <summary>
+            The base class that helps facilitate integration tests.
+            </summary>
+            <typeparam name="T">The type of input that is being tested.</typeparam>
+            <typeparam name="TStartup">The type of the startup.</typeparam>
+            <seealso cref="T:Devkit.Test.TestBase`1" />
+        </member>
+        <member name="F:Devkit.Test.IntegrationTestBase`2._appTestFixture">
+            <summary>
+            The application test fixture.
+            </summary>
+        </member>
+        <member name="F:Devkit.Test.IntegrationTestBase`2._httpClient">
+            <summary>
+            The HTTP client.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.#ctor(Devkit.Test.AppTestFixture{`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.IntegrationTestBase`2"/> class.
+            </summary>
+            <param name="testFixture">The application test fixture.</param>
+        </member>
+        <member name="P:Devkit.Test.IntegrationTestBase`2.Client">
+            <summary>
+            Gets the client.
+            </summary>
+            <value>
+            The client.
+            </value>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.DeleteAsync``1(System.String)">
+            <summary>
+            Deletes the asynchronous.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="route">The URI.</param>
+            <returns>
+            An http response message.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.GetAsync``1(System.String)">
+            <summary>
+            Posts the asynchronous.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="route">The URI.</param>
+            <returns>
+            An http response message.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.PostAsync``1(System.String,System.Object,System.Boolean)">
+            <summary>
+            Posts the asynchronous.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="route">The URI.</param>
+            <param name="content">The content.</param>
+            <param name="throwIfNotSuccessful">if set to <c>true</c> [throw if not successful].</param>
+            <returns>
+            An http response message.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.PostAsync``1(System.String)">
+            <summary>
+            Posts the asynchronous.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="route">The URI.</param>
+            <returns>
+            An http response message.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.PutAsync``1(System.String,System.Object)">
+            <summary>
+            Updates a record through an API call.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <param name="route">The URI.</param>
+            <param name="content">The content.</param>
+            <returns>
+            An http response message.
+            </returns>
+        </member>
+        <member name="M:Devkit.Test.IntegrationTestBase`2.ConvertRouteToUri(System.String)">
+            <summary>
+            Converts the route to URI.
+            </summary>
+            <param name="route">The route.</param>
+            <returns>A Uri version of the route.</returns>
+        </member>
+        <member name="T:Devkit.Test.Interfaces.IFaker`1">
+            <summary>
+            The IFaker is a interface used by test object fakers.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.Interfaces.IFaker`1.Generate">
+            <summary>
+            Generates this instance.
+            </summary>
+            <returns>An instance of T.</returns>
+        </member>
+        <member name="M:Devkit.Test.Interfaces.IFaker`1.Generate(System.Int32)">
+            <summary>
+            Generates the specified count.
+            </summary>
+            <param name="count">The count.</param>
+            <returns>A list of T.</returns>
+        </member>
+        <member name="T:Devkit.Test.TestBase`1">
+            <summary>
+            The test base class.
+            </summary>
+            <typeparam name="TRequest">The type of object to build.</typeparam>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.TestBase`1" /> class.
+            </summary>
+        </member>
+        <member name="P:Devkit.Test.TestBase`1.Faker">
+            <summary>
+            Gets the faker.
+            </summary>
+            <value>
+            The faker.
+            </value>
+        </member>
+        <member name="P:Devkit.Test.TestBase`1.Repository">
+            <summary>
+            Gets or sets the repository.
+            </summary>
+            <value>
+            The repository.
+            </value>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.Build">
+            <summary>
+            Builds this instance.
+            </summary>
+            <returns>An instance of T.</returns>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.Build(System.Int32)">
+            <summary>
+            Builds the specified count.
+            </summary>
+            <param name="count">The count.</param>
+            <returns>A collection of T.</returns>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:Devkit.Test.TestBase`1.SeedDatabase">
+            <summary>
+            Seeds the database.
+            </summary>
+        </member>
+        <member name="T:Devkit.Test.TestHttpResponse`1">
+            <summary>
+            HttpClient response from the API.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+        </member>
+        <member name="M:Devkit.Test.TestHttpResponse`1.#ctor(`0,System.Net.HttpStatusCode,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.TestHttpResponse`1" /> class.
+            </summary>
+            <param name="apiResponse">The API response.</param>
+            <param name="statusCode">The status code.</param>
+            <param name="isSuccessfulStatusCode">if set to <c>true</c> [is successful status code].</param>
+        </member>
+        <member name="P:Devkit.Test.TestHttpResponse`1.IsSuccessfulStatusCode">
+            <summary>
+            Gets or sets a value indicating whether this instance is successful status code.
+            </summary>
+            <value>
+              <c>true</c> if this instance is successful status code; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Devkit.Test.TestHttpResponse`1.Payload">
+            <summary>
+            Gets or sets the response.
+            </summary>
+            <value>
+            The response.
+            </value>
+        </member>
+        <member name="P:Devkit.Test.TestHttpResponse`1.StatusCode">
+            <summary>
+            Gets or sets the status code.
+            </summary>
+            <value>
+            The status code.
+            </value>
+        </member>
+        <member name="T:Devkit.Test.UnitTestBase`1">
+            <summary>
+            The base class that helps facilitate unit tests.
+            </summary>
+            <typeparam name="T">The type of input to the handler that is being tested.</typeparam>
+            <seealso cref="T:Devkit.Test.TestBase`1" />
+        </member>
+        <member name="F:Devkit.Test.UnitTestBase`1._runner">
+            <summary>
+            The runner.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.UnitTestBase`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Test.UnitTestBase`1" /> class.
+            </summary>
+        </member>
+        <member name="M:Devkit.Test.UnitTestBase`1.Dispose(System.Boolean)">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+    </members>
+</doc>
