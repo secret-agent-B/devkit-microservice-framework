@@ -7,12 +7,18 @@
 namespace Devkit.Security.Business.Users.Commands.RegisterUser
 {
     using System;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Devkit.Communication.FileStore.DTOs;
+    using Devkit.Communication.FileStore.Messages;
     using Devkit.Data.Interfaces;
     using Devkit.Patterns.CQRS.Command;
+    using Devkit.Patterns.Exceptions;
     using Devkit.Security.Business.ViewModels;
     using Devkit.Security.Data.Models;
+    using Devkit.ServiceBus.Exceptions;
+    using MassTransit;
     using Microsoft.AspNetCore.Identity;
 
     /// <summary>
@@ -22,14 +28,14 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
     public class RegisterUserHandler : CommandHandlerBase<RegisterUserCommand, UserVM>
     {
         /// <summary>
-        /// The user role.
-        /// </summary>
-        private const string _userRole = "User";
-
-        /// <summary>
         /// The role manager.
         /// </summary>
         private readonly RoleManager<UserRole> _roleManager;
+
+        /// <summary>
+        /// The upload base64 image client.
+        /// </summary>
+        private readonly IRequestClient<IUploadBase64Image> _uploadFileClient;
 
         /// <summary>
         /// The user manager.
@@ -42,11 +48,13 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
         /// <param name="repository">The repository.</param>
         /// <param name="userManager">The user manager.</param>
         /// <param name="roleManager">The role manager.</param>
-        public RegisterUserHandler(IRepository repository, UserManager<UserAccount> userManager, RoleManager<UserRole> roleManager)
+        /// <param name="uploadFileClient">The upload base64 image client.</param>
+        public RegisterUserHandler(IRepository repository, UserManager<UserAccount> userManager, RoleManager<UserRole> roleManager, IRequestClient<IUploadBase64Image> uploadFileClient)
             : base(repository)
         {
             this._userManager = userManager;
             this._roleManager = roleManager;
+            this._uploadFileClient = uploadFileClient;
         }
 
         /// <summary>
@@ -81,20 +89,41 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
                     City = this.Request.City,
                     Province = this.Request.Province,
                     Country = this.Request.Country,
-                    Zip = this.Request.Zip
+                    ZipCode = this.Request.ZipCode,
                 }
             };
+
+            foreach (var idCard in this.Request.IdentificationCards)
+            {
+                var (request, exception) = await this._uploadFileClient.GetResponse<IFileDTO, IConsumerException>(new
+                {
+                    Contents = idCard.Photo,
+                    FileName = $"{Guid.NewGuid().ToString()}.img",
+                    Size = 400
+                });
+
+                if (request.IsCompletedSuccessfully)
+                {
+                    var fileDto = (await request).Message;
+
+                    user.Profile.IdentificationCards.Add(new IdentificationCard
+                    {
+                        ImageId = fileDto.Id,
+                        Number = idCard.Number,
+                        Type = idCard.Type
+                    });
+                }
+                else
+                {
+                    this.Response.Exceptions.Add(nameof(IUploadBase64Image), new[] { (await exception).Message.ErrorMessage });
+                }
+            }
 
             var createResult = await this._userManager.CreateAsync(user, this.Request.Password);
 
             if (createResult.Succeeded)
             {
-                if (await this._roleManager.FindByNameAsync(_userRole) == null)
-                {
-                    await this._roleManager.CreateAsync(new UserRole(_userRole));
-                }
-
-                await this._userManager.AddToRoleAsync(user, _userRole);
+                await this.AssignRole(user);
 
                 this.Response.Id = user.Id.ToString();
                 this.Response.UserName = user.UserName;
@@ -106,8 +135,9 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
                 this.Response.City = user.Profile.City;
                 this.Response.Country = user.Profile.Country;
                 this.Response.Province = user.Profile.Province;
-                this.Response.Zip = user.Profile.Zip;
+                this.Response.ZipCode = user.Profile.ZipCode;
                 this.Response.PhoneNumber = user.PhoneNumber;
+                this.Response.Email = user.Email;
             }
             else
             {
@@ -116,6 +146,36 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
                     this.Response.Exceptions.Add(error.Code, new[] { error.Description });
                 }
             }
+        }
+
+        /// <summary>
+        /// Assigns the role.
+        /// </summary>
+        /// <returns>A task.</returns>
+        private async Task AssignRole(UserAccount user)
+        {
+            var role = string.Empty;
+
+            switch (this.Request.Role.ToLower())
+            {
+                case "client":
+                    role = "client";
+                    break;
+
+                case "driver":
+                    role = "driver";
+                    break;
+
+                default:
+                    throw new AppException("Invalid application role.");
+            }
+
+            if (await this._roleManager.FindByNameAsync(role) == null)
+            {
+                await this._roleManager.CreateAsync(new UserRole(role));
+            }
+
+            await this._userManager.AddToRoleAsync(user, role);
         }
     }
 }

@@ -1,0 +1,152 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/signup"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Member Registration</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="abs-bkg">
+		<ion-grid>
+			<ion-row>
+				<ion-col size-md="6" offset-sm="3">
+					<ion-card>
+						<ion-card-content>
+							Please Make sure that all the information that you
+							are providing is correct.
+						</ion-card-content>
+					</ion-card>
+
+					<div class="registration-form">
+						<label>Member Information</label>
+						<ion-item>
+							<ion-label position="stacked">First Name</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.firstName"
+							></ion-input>
+						</ion-item>
+
+						<ion-item>
+							<ion-label position="stacked"
+								>Middle Name</ion-label
+							>
+							<ion-input
+								[(ngModel)]="userInformation.middleName"
+							></ion-input>
+						</ion-item>
+
+						<ion-item>
+							<ion-label position="stacked">Last Name</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.lastName"
+							></ion-input>
+						</ion-item>
+					</div>
+
+					<div class="registration-form">
+						<label>Contact Information</label>
+						<ion-item>
+							<ion-label position="stacked"
+								>Email Address</ion-label
+							>
+							<ion-input
+								[(ngModel)]="userInformation.emailAddress"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked"
+								>Confirm Email Address</ion-label
+							>
+							<ion-input
+								[(ngModel)]="userInformation.confirmEmailAddress"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked"
+								>Phone Number</ion-label
+							>
+							<ion-input
+								pattern="[0-9,+,(,)]"
+								[(ngModel)]="userInformation.phoneNumber"
+							></ion-input>
+						</ion-item>
+					</div>
+
+					<div class="registration-form">
+						<label>Address Information</label>
+						<ion-item>
+							<ion-label position="stacked">Address 1</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.address1"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked">Address 2</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.address2"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked">City</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.city"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked"
+								>State/Province</ion-label
+							>
+							<ion-input
+								[(ngModel)]="userInformation.province"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked">Country</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.country"
+							></ion-input>
+						</ion-item>
+						<ion-item>
+							<ion-label position="stacked">Zip Code</ion-label>
+							<ion-input
+								[(ngModel)]="userInformation.zipCode"
+							></ion-input>
+						</ion-item>
+					</div>
+
+					<ion-card>
+						<div class="img-holder">
+							<img src="{{this.userInformation.photo}}" />
+						</div>
+						<ion-card-content>
+							<ion-button
+								expand="block"
+								color="dark"
+								fill="outline"
+								(click)="openCamera(file)"
+								>Pick or Take a Photo</ion-button
+							>
+							<input
+								#file
+								type="file"
+								style="display: none;"
+								accept="image/x-png"
+								(change)="imageUpload(file)"
+							/>
+						</ion-card-content>
+					</ion-card>
+
+					<ion-button
+						type="submit"
+						expand="block"
+						color="dark"
+						(click)="submitData()"
+						>Review My Form</ion-button
+					>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>

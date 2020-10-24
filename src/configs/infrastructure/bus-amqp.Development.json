@@ -1,0 +1,9 @@
+{
+    "ServiceBusConfiguration": {        
+        "heartbeat": 30,
+        "username": "guest",
+        "password": "guest",
+        "host": "devkit.rabbitmq",
+        "port": 8500
+    }
+}

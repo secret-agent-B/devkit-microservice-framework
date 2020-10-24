@@ -7,6 +7,7 @@
 namespace Devkit.Http.Extensions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
@@ -27,13 +28,8 @@ namespace Devkit.Http.Extensions
         /// <returns>
         /// An http response message.
         /// </returns>
-        public static async Task<HttpResponseVM<TResponse>> DeleteAsync<TResponse>(this HttpClient httpClient, string route)
+        public static async Task<HttpResponseVM<TResponse>> DeleteAsync<TResponse>([NotNull] this HttpClient httpClient, string route)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
-
             var response = await httpClient.DeleteAsync(ConvertRouteToUri(httpClient.BaseAddress, route));
             var json = await response.Content.ReadAsStringAsync();
             var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
@@ -50,13 +46,8 @@ namespace Devkit.Http.Extensions
         /// <returns>
         /// An http response message.
         /// </returns>
-        public static async Task<HttpResponseVM<TResponse>> GetAsync<TResponse>(this HttpClient httpClient, string route)
+        public static async Task<HttpResponseVM<TResponse>> GetAsync<TResponse>([NotNull] this HttpClient httpClient, string route)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
-
             var response = await httpClient.GetAsync(ConvertRouteToUri(httpClient.BaseAddress, route), HttpCompletionOption.ResponseContentRead);
             var json = await response.Content.ReadAsStringAsync();
             var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
@@ -76,13 +67,8 @@ namespace Devkit.Http.Extensions
         /// An http response message.
         /// </returns>
         /// <exception cref="HttpRequestException"></exception>
-        public static async Task<HttpResponseVM<TResponse>> PostAsync<TResponse>(this HttpClient httpClient, string route, object content, bool throwIfNotSuccessful = false)
+        public static async Task<HttpResponseVM<TResponse>> PostAsync<TResponse>([NotNull] this HttpClient httpClient, string route, object content, bool throwIfNotSuccessful = false)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
-
             using var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(ConvertRouteToUri(httpClient.BaseAddress, route), stringContent);
@@ -108,13 +94,8 @@ namespace Devkit.Http.Extensions
         /// <returns>
         /// An http response message.
         /// </returns>
-        public static async Task<HttpResponseVM<TResponse>> PostAsync<TResponse>(this HttpClient httpClient, string route)
+        public static async Task<HttpResponseVM<TResponse>> PostAsync<TResponse>([NotNull] this HttpClient httpClient, string route)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
-
             using var stringContent = new StringContent(JsonConvert.SerializeObject(new { }), Encoding.UTF8, "application/json");
 
             var response = await httpClient.PostAsync(ConvertRouteToUri(httpClient.BaseAddress, route), stringContent);
@@ -134,13 +115,8 @@ namespace Devkit.Http.Extensions
         /// <returns>
         /// An http response message.
         /// </returns>
-        public static async Task<HttpResponseVM<TResponse>> PutAsync<TResponse>(this HttpClient httpClient, string route, object content)
+        public static async Task<HttpResponseVM<TResponse>> PutAsync<TResponse>([NotNull] this HttpClient httpClient, string route, object content)
         {
-            if (httpClient == null)
-            {
-                throw new ArgumentNullException(nameof(httpClient));
-            }
-
             using var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
             var response = await httpClient.PutAsync(ConvertRouteToUri(httpClient.BaseAddress, route), stringContent);

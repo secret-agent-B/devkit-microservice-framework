@@ -1,0 +1,10 @@
+{
+    "Serilog": {
+      "Using": ["Serilog.Sinks.Console"],
+      "MinimumLevel": "Information",
+      "Properties": {
+        "Application": "Logistics App"
+      }
+    }
+  }
+  

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-base-ns
+  name: elasticsearch-deploy
+  labels:
+    name: elasticsearch-deploy
+    app: devkit-app
+    tier: base
+spec:
+  selector:
+    matchLabels:
+      name: elasticsearch-pod
+      app: devkit-app
+      tier: base
+  template:
+    metadata:
+      namespace: devkit-base-ns
+      name: elasticsearch-pod
+      labels:
+        name: elasticsearch-pod
+        app: devkit-app
+        tier: base
+    spec:
+      containers:
+        - name: elasticsearch
+          image: elasticsearch:7.8.1
+          env:
+            - name: xpack.monitoring.enabled
+              value: 'true'
+            - name: xpack.watcher.enabled
+              value: 'false'
+            - name: discovery.type
+              value: 'single-node'
+            - name: ES_JAVA_OPTS
+              value: '-Xms512m -Xmx512m'
+          ports:
+            - containerPort: 9200

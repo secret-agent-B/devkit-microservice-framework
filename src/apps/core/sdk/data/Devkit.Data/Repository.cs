@@ -42,7 +42,7 @@ namespace Devkit.Data
         public void Add<T>(T item)
             where T : new()
         {
-            this._database.GetCollection<T>(typeof(T).Name).InsertOne(item);
+            this.GetCollection<T>().InsertOne(item);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Devkit.Data
         public void Add<T>(IEnumerable<T> items)
             where T : new()
         {
-            this._database.GetCollection<T>(typeof(T).Name).InsertMany(items);
+            this.GetCollection<T>().InsertMany(items);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Devkit.Data
                     item.CreatedOn = createdOn;
                 }
 
-                this._database.GetCollection<T>(typeof(T).Name).InsertMany(items);
+                this.GetCollection<T>().InsertMany(items);
             }
         }
 
@@ -88,7 +88,7 @@ namespace Devkit.Data
             if (item != null)
             {
                 item.CreatedOn = DateTime.Now;
-                this._database.GetCollection<T>(typeof(T).Name).InsertOne(item);
+                this.GetCollection<T>().InsertOne(item);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Devkit.Data
         public List<T> All<T>()
             where T : new()
         {
-            return this._database.GetCollection<T>(typeof(T).Name).AsQueryable().ToList();
+            return this.GetCollection<T>().AsQueryable().ToList();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Devkit.Data
         public bool CollectionExists<T>()
             where T : new()
         {
-            var collection = this._database.GetCollection<T>(typeof(T).Name);
+            var collection = this.GetCollection<T>();
             var filter = new BsonDocument();
             var totalCount = collection.CountDocuments(filter);
 
@@ -126,7 +126,19 @@ namespace Devkit.Data
         public void Delete<T>(Expression<Func<T, bool>> expression)
             where T : new()
         {
-            this._database.GetCollection<T>(typeof(T).Name).DeleteMany(expression);
+            this.GetCollection<T>().DeleteMany(expression);
+        }
+
+        /// <summary>
+        /// Gets the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of document.</typeparam>
+        /// <returns>
+        /// The MongoCollection of the document type.
+        /// </returns>
+        public IMongoCollection<T> GetCollection<T>()
+        {
+            return this._database.GetCollection<T>(typeof(T).Name);
         }
 
         /// <summary>
@@ -140,9 +152,30 @@ namespace Devkit.Data
         public List<T> GetMany<T>(Expression<Func<T, bool>> expression)
             where T : new()
         {
-            return this._database.GetCollection<T>(typeof(T).Name)
+            return this.GetCollection<T>()
                 .AsQueryable()
                 .Where(expression)
+                .ToList();
+        }
+
+        /// <summary>
+        /// Wheres the specified expression.
+        /// </summary>
+        /// <typeparam name="T">The type of the document.</typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>
+        /// A queryable collection of documents.
+        /// </returns>
+        public List<T> GetMany<T>(Expression<Func<T, bool>> expression, int page, int pageSize)
+            where T : new()
+        {
+            return this.GetCollection<T>()
+                .AsQueryable()
+                .Where(expression)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
         }
 
@@ -155,7 +188,7 @@ namespace Devkit.Data
         public T GetOneOrDefault<T>(Expression<Func<T, bool>> expression)
             where T : new()
         {
-            return this._database.GetCollection<T>(typeof(T).Name)
+            return this.GetCollection<T>()
                 .AsQueryable()
                 .Where(expression)
                 .SingleOrDefault();
@@ -175,7 +208,7 @@ namespace Devkit.Data
         {
             var update = updateFunction?.Invoke(Builders<T>.Update);
 
-            var result = this._database.GetCollection<T>(typeof(T).Name).UpdateOne<T>(filter, update);
+            var result = this.GetCollection<T>().UpdateOne<T>(filter, update);
 
             if (result.IsAcknowledged)
             {
@@ -197,10 +230,11 @@ namespace Devkit.Data
         public T UpdateWithAudit<T>(Expression<Func<T, bool>> filter, Func<UpdateDefinitionBuilder<T>, UpdateDefinition<T>> updateFunction)
             where T : DocumentBase, new()
         {
-            var update = updateFunction?.Invoke(Builders<T>.Update)
+            var update = updateFunction?
+                .Invoke(Builders<T>.Update)
                 .Set(x => x.LastUpdatedOn, DateTime.Now);
 
-            var result = this._database.GetCollection<T>(typeof(T).Name).UpdateOne<T>(filter, update);
+            var result = this.GetCollection<T>().UpdateOne<T>(filter, update);
 
             if (result.IsAcknowledged)
             {

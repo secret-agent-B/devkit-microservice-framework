@@ -8,6 +8,7 @@ namespace Devkit.Security.Stores
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -30,6 +31,11 @@ namespace Devkit.Security.Stores
         private readonly IUserClaimsPrincipalFactory<UserAccount> _claimsPrincipalFactory;
 
         /// <summary>
+        /// The role manager.
+        /// </summary>
+        private readonly RoleManager<UserRole> _roleManager;
+
+        /// <summary>
         /// The user manager.
         /// </summary>
         private readonly UserManager<UserAccount> _userManager;
@@ -38,10 +44,12 @@ namespace Devkit.Security.Stores
         /// Initializes a new instance of the <see cref="CustomProfileService" /> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
+        /// <param name="roleManager">The role manager.</param>
         /// <param name="claimsPrincipalFactory">The claims principal factory.</param>
-        public CustomProfileService(UserManager<UserAccount> userManager, IUserClaimsPrincipalFactory<UserAccount> claimsPrincipalFactory)
+        public CustomProfileService(UserManager<UserAccount> userManager, RoleManager<UserRole> roleManager, IUserClaimsPrincipalFactory<UserAccount> claimsPrincipalFactory)
         {
             this._userManager = userManager;
+            this._roleManager = roleManager;
             this._claimsPrincipalFactory = claimsPrincipalFactory;
         }
 
@@ -50,13 +58,8 @@ namespace Devkit.Security.Stores
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>A task.</returns>
-        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        public async Task GetProfileDataAsync([NotNull] ProfileDataRequestContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
             var sub = context.Subject.GetSubjectId();
             var user = await this._userManager.FindByIdAsync(sub);
             var principal = await this._claimsPrincipalFactory.CreateAsync(user);
@@ -65,10 +68,10 @@ namespace Devkit.Security.Stores
             claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
 
             // Add custom claims in token here based on user properties or any other source
-            claims.Add(new Claim("firstname", user.Profile.FirstName ?? string.Empty));
-            claims.Add(new Claim("lastname", user.Profile.LastName ?? string.Empty));
-            claims.Add(new Claim("middlename", user.Profile.MiddleName ?? string.Empty));
-            claims.Add(new Claim("fullname", user.Profile.FullName ?? string.Empty));
+            claims.Add(new Claim("firstName", user.Profile.FirstName ?? string.Empty));
+            claims.Add(new Claim("lastName", user.Profile.LastName ?? string.Empty));
+            claims.Add(new Claim("middleName", user.Profile.MiddleName ?? string.Empty));
+            claims.Add(new Claim("fullName", user.Profile.FullName ?? string.Empty));
             claims.Add(new Claim("email", user.Email ?? string.Empty));
             claims.Add(new Claim("phone", user.PhoneNumber ?? string.Empty));
             claims.Add(new Claim("address1", user.Profile.Address1 ?? string.Empty));
@@ -76,14 +79,19 @@ namespace Devkit.Security.Stores
             claims.Add(new Claim("city", user.Profile.City ?? string.Empty));
             claims.Add(new Claim("province", user.Profile.Province ?? string.Empty));
             claims.Add(new Claim("country", user.Profile.Country ?? string.Empty));
-            claims.Add(new Claim("zip", user.Profile.Zip ?? string.Empty));
+            claims.Add(new Claim("zipcode", user.Profile.ZipCode ?? string.Empty));
 
-            var roles = await this._userManager.GetRolesAsync(user);
+            var roleNames = await this._userManager.GetRolesAsync(user);
             var roleClaims = new List<Claim>();
 
-            foreach (string role in roles)
+            foreach (string roleName in roleNames)
             {
-                roleClaims.Add(new Claim(JwtClaimTypes.Role, role));
+                roleClaims.Add(new Claim(JwtClaimTypes.Role, roleName));
+
+                var role = await this._roleManager.FindByNameAsync(roleName);
+                var permissions = await this._roleManager.GetClaimsAsync(role);
+
+                claims.AddRange(permissions);
             }
 
             claims.AddRange(roleClaims);
@@ -97,13 +105,8 @@ namespace Devkit.Security.Stores
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns>A task.</returns>
-        public async Task IsActiveAsync(IsActiveContext context)
+        public async Task IsActiveAsync([NotNull] IsActiveContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
             var sub = context.Subject.GetSubjectId();
             var user = await this._userManager.FindByIdAsync(sub);
 

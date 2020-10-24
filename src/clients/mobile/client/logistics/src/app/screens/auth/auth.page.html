@@ -1,0 +1,72 @@
+<ion-content>
+	<div class="abs-bkg h100">
+		<ion-grid class="h100">
+			<ion-row class="h100">
+				<ion-col size-md="4" offset-sm="4" size-xs="8" offset-xs="2">
+					<form
+						#login="ngForm"
+						(ngSubmit)="onSubmit(login)"
+						class="v-center h100"
+					>
+						<div>
+							<h1>Log-In</h1>
+
+							<div class="login-form">
+								<ion-item>
+									<ion-label position="stacked"
+										>Email Address</ion-label
+									>
+									<ion-input
+										type="email"
+										#emailCtrl="ngModel"
+										name="email"
+										ngModel
+										required
+									></ion-input>
+								</ion-item>
+
+								<ion-item>
+									<ion-label position="stacked"
+										>Password</ion-label
+									>
+									<ion-input
+										type="password"
+										#passwordCtrl="ngModel"
+										name="password"
+										ngModel
+										required
+									></ion-input>
+								</ion-item>
+							</div>
+
+							<br />
+							<ion-button
+								type="submit"
+								expand="block"
+								color="dark"
+								[disabled]="login.invalid"
+								>Login-In</ion-button
+							>
+
+							<div class="or-divider"></div>
+
+							<ion-button
+								expand="block"
+								color="dark"
+								fill="outline"
+								[routerLink]="['/signup']"
+								>Sign-Up</ion-button
+							>
+
+							<br />
+							<div class="note">
+								By clicking the login, I accept the <br />
+								<a>Terms &amp; Condition</a>
+							</div>
+						</div>
+					</form>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>

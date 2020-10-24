@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\tests\Devkit.ServiceBus.Test\Devkit.ServiceBus.Test.csproj" />
+        <ProjectReference Include="..\Devkit.Communication.Payment\Devkit.Communication.Payment.csproj" />
+    </ItemGroup>
+</Project>

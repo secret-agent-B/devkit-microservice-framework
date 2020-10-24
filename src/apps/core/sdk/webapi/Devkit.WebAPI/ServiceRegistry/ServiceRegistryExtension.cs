@@ -24,16 +24,16 @@ namespace Devkit.WebAPI.ServiceRegistry
         /// <returns>A service collection.</returns>
         internal static IServiceCollection AddServiceRegistry(this IServiceCollection services)
         {
-            _ = bool.TryParse(Environment.GetEnvironmentVariable("DISABLE_SERVICE_REGISTRY"), out var disableMiddleware);
+            _ = bool.TryParse(Environment.GetEnvironmentVariable("ENABLE_SERVICE_REGISTRY"), out var enableMiddleware);
 
-            if (disableMiddleware)
+            if (!enableMiddleware)
             {
                 return services;
             }
 
             var provider = services.BuildServiceProvider();
             var configuration = provider.GetService<IConfiguration>();
-            var consulServiceConfig = configuration.GetSection(ConsulServiceConfiguration._section).Get<ConsulServiceConfiguration>();
+            var consulServiceConfig = configuration.GetSection(ConsulServiceConfiguration.Section).Get<ConsulServiceConfiguration>();
 
             services.AddSingleton(consulServiceConfig);
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>

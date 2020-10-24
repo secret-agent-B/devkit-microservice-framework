@@ -1,0 +1,49 @@
+ion-slides {
+	height: 100%;
+
+	.slides {
+		padding: 15px;
+		height: 100%;
+		p {
+			text-align: left;
+		}
+ 
+		::after {
+			opacity: 0.1;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			position: absolute;
+			z-index: -1;
+            background-position: center;
+            background-size: cover;
+		}
+
+		&.slide1 {
+			::after {
+				content: '';
+				background-image: url(../../../assets/bkg.jpg);
+			}
+		}
+		&.slide2 {
+			::after {
+				content: '';
+				background-image: url(../../../assets/users-bkg.jpeg);
+			}
+		}
+		&.slide3 {
+			::after {
+				content: '';
+				background-image: url(../../../assets/driver-bkg.jpeg);
+			}
+		}
+	}
+}
+.swiper-slide {
+	display: block;
+}
+
+.swiper-slide h2 {
+	margin-top: 2.8rem;
+}

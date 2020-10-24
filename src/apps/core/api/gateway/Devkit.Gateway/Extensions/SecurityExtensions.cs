@@ -11,14 +11,13 @@ namespace Devkit.Gateway.Extensions
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Devkit.Gateway.Configuration;
-    using Devkit.Gateway.Properties;
     using IdentityServer4.AccessTokenValidation;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Logging;
+    using Serilog;
 
     /// <summary>
     /// The authorization extension.
@@ -50,8 +49,7 @@ namespace Devkit.Gateway.Extensions
         /// <param name="authConfig">The authentication options.</param>
         private static void AddAuthentication(IServiceCollection services, AuthenticationConfiguration authConfig)
         {
-            var loggerFactory = services.BuildServiceProvider().GetRequiredService<ILoggerFactory>();
-            var logger = loggerFactory.CreateLogger<DebugJwtBearerEvents>();
+            var logger = services.BuildServiceProvider().GetRequiredService<ILogger>();
 
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(
@@ -116,13 +114,13 @@ namespace Devkit.Gateway.Extensions
             /// <summary>
             /// The logger.
             /// </summary>
-            private readonly ILogger<DebugJwtBearerEvents> _logger;
+            private readonly ILogger _logger;
 
             /// <summary>
             /// Initializes a new instance of the <see cref="DebugJwtBearerEvents"/> class.
             /// </summary>
             /// <param name="logger">The logger.</param>
-            public DebugJwtBearerEvents(ILogger<DebugJwtBearerEvents> logger)
+            public DebugJwtBearerEvents(ILogger logger)
             {
                 this._logger = logger;
             }
@@ -134,7 +132,11 @@ namespace Devkit.Gateway.Extensions
             /// <returns>A task.</returns>
             public override Task AuthenticationFailed(AuthenticationFailedContext context)
             {
-                this._logger.LogDebug(Resources.DEBUG_JWT_AUTH_FAILED_LOG_MESSAGE, context);
+                this._logger
+                    .ForContext("JWTDebugEvent", "AuthenticationFailed")
+                    .ForContext("Context", context)
+                    .Debug("JWT AuthenticationFailed");
+
                 return base.AuthenticationFailed(context);
             }
 
@@ -145,7 +147,11 @@ namespace Devkit.Gateway.Extensions
             /// <returns>A task.</returns>
             public override Task Challenge(JwtBearerChallengeContext context)
             {
-                this._logger.LogDebug(Resources.DEBUG_JWT_CHALLENGE_LOG_MESSAGE, context);
+                this._logger
+                    .ForContext("JWTDebugEvent", "Challenge")
+                    .ForContext("Context", context)
+                    .Debug("JWT Challenge");
+
                 return base.Challenge(context);
             }
 
@@ -156,7 +162,11 @@ namespace Devkit.Gateway.Extensions
             /// <returns>A task.</returns>
             public override Task MessageReceived(MessageReceivedContext context)
             {
-                this._logger.LogDebug(Resources.DEBUG_JWT_MESSAGE_RECEIVED_LOG_MESSAGE, context);
+                this._logger
+                    .ForContext("JWTDebugEvent", "MessageReceived")
+                    .ForContext("Context", context)
+                    .Debug("JWT MessageReceived");
+
                 return base.MessageReceived(context);
             }
 
@@ -167,7 +177,11 @@ namespace Devkit.Gateway.Extensions
             /// <returns>A task.</returns>
             public override Task TokenValidated(TokenValidatedContext context)
             {
-                this._logger.LogDebug(Resources.DEBUG_JWT_TOKEN_VALIDATED_LOG_MESSAGE, context);
+                this._logger
+                    .ForContext("JWTDebugEvent", "TokenValidated")
+                    .ForContext("Context", context)
+                    .Debug("JWT TokenValidated");
+
                 return base.TokenValidated(context);
             }
         }

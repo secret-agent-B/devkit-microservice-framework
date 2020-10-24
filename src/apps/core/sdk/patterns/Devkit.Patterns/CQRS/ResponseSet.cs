@@ -23,11 +23,11 @@ namespace Devkit.Patterns.CQRS
         }
 
         /// <summary>
-        /// Gets or sets the items.
+        /// Gets the items.
         /// </summary>
         /// <value>
         /// The items.
         /// </value>
-        public IEnumerable<T> Items { get; set; }
+        public List<T> Items { get; }
     }
 }

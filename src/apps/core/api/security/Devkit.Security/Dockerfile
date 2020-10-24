@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["services/security/Devkit.Security/Devkit.Security.csproj", "services/security/Devkit.Security/"]
-COPY ["apps/logistics-app/common/domain/Devkit.Patterns/Devkit.Patterns.csproj", "apps/logistics-app/common/domain/Devkit.Patterns/"]
-COPY ["apps/logistics-app/common/data/Devkit.Data/Devkit.Data.csproj", "apps/logistics-app/common/data/Devkit.Data/"]
-COPY ["apps/logistics-app/common/webapi/Devkit.WebAPI/Devkit.WebAPI.csproj", "apps/logistics-app/common/webapi/Devkit.WebAPI/"]
-COPY ["apps/logistics-app/common/infrastructure/Devkit.ServiceBus/Devkit.ServiceBus.csproj", "apps/logistics-app/common/infrastructure/Devkit.ServiceBus/"]
-RUN dotnet restore "services/security/Devkit.Security/Devkit.Security.csproj"
+COPY ["apps/core/api/security/Devkit.Security/Devkit.Security.csproj", "apps/core/api/security/Devkit.Security/"]
+COPY ["apps/core/sdk/webapi/Devkit.WebAPI/Devkit.WebAPI.csproj", "apps/core/sdk/webapi/Devkit.WebAPI/"]
+COPY ["apps/core/sdk/patterns/Devkit.Patterns/Devkit.Patterns.csproj", "apps/core/sdk/patterns/Devkit.Patterns/"]
+COPY ["apps/core/sdk/data/Devkit.Data/Devkit.Data.csproj", "apps/core/sdk/data/Devkit.Data/"]
+COPY ["apps/core/sdk/communication/Devkit.ServiceBus/Devkit.ServiceBus.csproj", "apps/core/sdk/communication/Devkit.ServiceBus/"]
+RUN dotnet restore "apps/core/api/security/Devkit.Security/Devkit.Security.csproj"
 COPY . .
-WORKDIR "/src/services/security/Devkit.Security"
+WORKDIR "/src/apps/core/api/security/Devkit.Security"
 RUN dotnet build "Devkit.Security.csproj" -c Release -o /app/build
 
 FROM build AS publish

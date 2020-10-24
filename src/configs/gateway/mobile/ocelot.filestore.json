@@ -1,0 +1,13 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/{catchAll}",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/file-store-api/{catchAll}",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "ServiceName": "file-store-api"
+        }
+    ]
+}

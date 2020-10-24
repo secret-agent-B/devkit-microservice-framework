@@ -10,7 +10,6 @@ namespace Devkit.WebAPI
     using System.Reflection;
     using Devkit.Data.Extensions;
     using Devkit.Patterns.CQRS.Extensions;
-    using Devkit.ServiceBus.Extensions;
     using Devkit.WebAPI.Extensions;
     using Devkit.WebAPI.Filters;
     using Devkit.WebAPI.ServiceRegistry;
@@ -20,6 +19,9 @@ namespace Devkit.WebAPI
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+    using Newtonsoft.Json.Serialization;
 
     /// <summary>
     /// The application startup base.
@@ -30,11 +32,6 @@ namespace Devkit.WebAPI
         /// The API definition.
         /// </summary>
         private readonly APIDefinition _apiDefinition;
-
-        /// <summary>
-        /// The test environment.
-        /// </summary>
-        private readonly bool _isUnitTestEnvironment;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AppStartupBase" /> class.
@@ -50,7 +47,6 @@ namespace Devkit.WebAPI
             this.ValidationAssemblies = new HashSet<Assembly>();
 
             this._apiDefinition = configuration.GetAPIDefinition();
-            this._isUnitTestEnvironment = this.WebHostEnvironment.IsEnvironment("unit-test");
         }
 
         /// <summary>
@@ -124,14 +120,21 @@ namespace Devkit.WebAPI
                 .AddMvc(options =>
                 {
                     options.Filters.Add(typeof(PipelineFilterAttribute));
+                })
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.Formatting = Formatting.Indented;
+                    options.SerializerSettings.TypeNameHandling = TypeNameHandling.None;
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    options.SerializerSettings.Converters = new[] {
+                        new StringEnumConverter(new CamelCaseNamingStrategy())
+                    };
                 });
 
             services.AddHealthChecks();
             services.AddRepository();
             services.AddMediatRAssemblies(this.MediatorAssemblies);
-
             services.AddServiceRegistry();
-            services.AddServiceBus(this.AddConsumers, this._isUnitTestEnvironment);
             services.AddSwagger(this._apiDefinition);
 
             mvcBuilder.AddValidationAssemblies(this.ValidationAssemblies);

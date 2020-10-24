@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\sdk\communication\Devkit.Http\Devkit.Http.csproj" />
+      <ProjectReference Include="..\..\..\..\sdk\webapi\Devkit.WebAPI\Devkit.WebAPI.csproj" />
+      <ProjectReference Include="..\..\Devkit.Payment\Devkit.Payment.csproj" />
+    </ItemGroup>
+</Project>

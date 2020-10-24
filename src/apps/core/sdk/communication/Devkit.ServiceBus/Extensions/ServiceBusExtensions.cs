@@ -7,10 +7,10 @@
 namespace Devkit.ServiceBus.Extensions
 {
     using System;
+    using System.IO;
     using Devkit.ServiceBus.Interfaces;
     using Devkit.ServiceBus.Services;
     using MassTransit;
-    using MassTransit.ExtensionsDependencyInjectionIntegration;
     using MassTransit.MessageData;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -24,86 +24,79 @@ namespace Devkit.ServiceBus.Extensions
         /// <summary>
         /// Uses the service bus.
         /// </summary>
+        /// <typeparam name="TConsumerRegistry">The type of the consumer registrar.</typeparam>
         /// <param name="services">The services.</param>
-        /// <param name="configurator">The configurator.</param>
-        /// <param name="useInMemoryServiceBus">if set to <c>true</c> [use in memory service bus].</param>
         /// <returns>
         /// The service collection.
         /// </returns>
-        public static IServiceCollection AddServiceBus(this IServiceCollection services, Action<IServiceCollectionBusConfigurator> configurator, bool useInMemoryServiceBus)
+        public static IServiceCollection AddServiceBus<TConsumerRegistry>(this IServiceCollection services)
+            where TConsumerRegistry : class, IBusRegistry
         {
-            _ = bool.TryParse(Environment.GetEnvironmentVariable("DISABLE_SERVICE_BUS"), out var disableMiddleware);
+            // Adding this into the integration test as middleware will cause the test to stop responding.
+            services.AddSingleton<IHostedService, BusHostedService>();
+            services.AddSingleton<IBusRegistry, TConsumerRegistry>();
 
-            if (disableMiddleware)
+            var serviceBusType = Environment.GetEnvironmentVariable("SERVICE_BUS_TYPE");
+            var provider = services.BuildServiceProvider();
+
+            switch (serviceBusType.ToLower())
             {
-                return services;
+                case "amqp":
+                    services.UseAMQPServiceBus();
+                    break;
+
+                default:
+                    // no service bus
+                    break;
             }
-
-            // Get the json configuration and use it to setup connection to RabbitMQ.
-            var serviceBusOptions = services
-            .BuildServiceProvider()
-            .GetRequiredService<IConfiguration>()
-            .GetSection(ServiceBusOptions.Section)
-            .Get<ServiceBusOptions>();
-
-            if (serviceBusOptions == null)
-            {
-                return services;
-            }
-
-            if (!useInMemoryServiceBus)
-            {
-                // In Memory service bus will be configured on the Shared Test project and not here.
-                // Setup RabbitMQ connection and logging to serilog.
-                // This will also use the configurator to setup subscriptions to the service bus. Beep beep!!!
-                services.UseRabbitMQServiceBus(serviceBusOptions, configurator);
-
-                // TODO: We'll need to set this up and not just use the default settings for encryption. Need to think about where to get certs too.
-                // services.AddSingleton<IMessageDataRepository, FileSystemMessageDataRepository>();
-                // services.AddSingleton<IMessageDataRepository, EncryptedMessageDataRepository>();
-
-                // Adding this into the integration test as middleware will cause the test to stop responding.
-                services.AddSingleton<IHostedService, BusHostedService>();
-            }
-
-            services.AddSingleton<IMessageDataRepository, InMemoryMessageDataRepository>();
-            services.AddSingleton<IServiceBusClient, ServiceBusClient>();
 
             return services;
         }
 
         /// <summary>
-        /// Setups the specified services.
+        /// Ins the memory service bus.
         /// </summary>
         /// <param name="services">The services.</param>
-        /// <param name="serviceBusOptions">The service bus options.</param>
-        /// <param name="configurator">The configurator.</param>
-        private static void UseRabbitMQServiceBus(this IServiceCollection services, ServiceBusOptions serviceBusOptions, Action<IServiceCollectionBusConfigurator> configurator)
+        private static void UseAMQPServiceBus(this IServiceCollection services)
         {
-            // UseInMemoryServiceBus DI for MassTransit.
             services.AddMassTransit(x =>
             {
-                configurator(x);
+                var provider = services.BuildServiceProvider();
+                var registry = provider.GetRequiredService<IBusRegistry>();
+
+                registry.RegisterConsumers(x);
+                registry.RegisterRequestClients(x);
 
                 // Add bus to the container.
-                x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
+                    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                    var configuration = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile($"infrastructure/bus-amqp.{environment}.json", false, false)
+                        .Build();
+
+                    var options = configuration.GetSection(ServiceBusConfiguration.Section).Get<ServiceBusConfiguration>();
+
                     cfg.Host(
-                        new Uri($"amqp://{serviceBusOptions.Host}"),
+                        new Uri($"amqp://{options.Host}"),
                         hostConfig =>
                         {
-                            hostConfig.Username(serviceBusOptions.Username);
-                            hostConfig.Password(serviceBusOptions.Password);
-                            hostConfig.Heartbeat(serviceBusOptions.Heartbeat);
+                            hostConfig.Username(options.Username);
+                            hostConfig.Password(options.Password);
+                            hostConfig.Heartbeat(options.Heartbeat);
                         });
 
                     // Configure the endpoints for all defined consumer, saga, and activity types using an optional
                     // endpoint name formatter. If no endpoint name formatter is specified and an
                     // MassTransit.IEndpointNameFormatter is registered in the container, it is resolved from the container.
                     // Otherwise, the MassTransit.Definition.DefaultEndpointNameFormatter is used.
-                    cfg.ConfigureEndpoints(provider, new EndpointNameFormatter());
+                    cfg.ConfigureEndpoints(context, new EndpointNameFormatter());
                 }));
             });
+
+            // Needed for transfering files within the ecosystem.
+            services.AddSingleton<IMessageDataRepository, InMemoryMessageDataRepository>();
         }
     }
 }

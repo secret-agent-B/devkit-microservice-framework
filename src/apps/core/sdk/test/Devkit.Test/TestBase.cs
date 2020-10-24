@@ -8,10 +8,8 @@ namespace Devkit.Test
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Bogus;
     using Devkit.Data.Interfaces;
-    using MongoDB.Driver;
 
     /// <summary>
     /// The test base class.

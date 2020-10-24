@@ -6,6 +6,8 @@
 
 namespace Devkit.Security.Business.Users.Commands.RegisterUser
 {
+    using System.Collections;
+    using System.Collections.Generic;
     using Devkit.Patterns.CQRS.Command;
     using Devkit.Security.Business.ViewModels;
 
@@ -14,6 +16,14 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
     /// </summary>
     public class RegisterUserCommand : CommandRequestBase<UserVM>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegisterUserCommand"/> class.
+        /// </summary>
+        public RegisterUserCommand()
+        {
+            this.IdentificationCards = new List<IdentificationCardEditorVM>();
+        }
+
         /// <summary>
         /// Gets or sets the address1.
         /// </summary>
@@ -71,6 +81,14 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
         public string FirstName { get; set; }
 
         /// <summary>
+        /// Gets the identification cards.
+        /// </summary>
+        /// <value>
+        /// The identification cards.
+        /// </value>
+        public IList<IdentificationCardEditorVM> IdentificationCards { get; }
+
+        /// <summary>
         /// Gets or sets the last name.
         /// </summary>
         /// <value>
@@ -111,6 +129,14 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
         public string Province { get; set; }
 
         /// <summary>
+        /// Gets or sets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        public string Role { get; set; }
+
+        /// <summary>
         /// Gets or sets the username.
         /// </summary>
         /// <value>
@@ -124,6 +150,6 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
         /// <value>
         /// The zip.
         /// </value>
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
     }
 }

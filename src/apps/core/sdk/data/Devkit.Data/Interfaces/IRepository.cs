@@ -8,7 +8,6 @@ namespace Devkit.Data.Interfaces
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Linq.Expressions;
     using MongoDB.Driver;
 
@@ -74,12 +73,32 @@ namespace Devkit.Data.Interfaces
             where T : new();
 
         /// <summary>
-        /// Wheres the specified expression.
+        /// Gets the collection.
+        /// </summary>
+        /// <typeparam name="T">Type of document.</typeparam>
+        /// <returns>The MongoCollection of the document type.</returns>
+        IMongoCollection<T> GetCollection<T>();
+
+        /// <summary>
+        /// Gets a collection using the specified expression as filter.
         /// </summary>
         /// <typeparam name="T">The type of the document.</typeparam>
         /// <param name="expression">The expression.</param>
-        /// <returns>A queryable collection of documents.</returns>
+        /// <returns>
+        /// A list of T.
+        /// </returns>
         List<T> GetMany<T>(Expression<Func<T, bool>> expression)
+            where T : new();
+
+        /// <summary>
+        /// Gets a paged collection using the specified expression as filter.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="expression">The expression.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>A list of T.</returns>
+        List<T> GetMany<T>(Expression<Func<T, bool>> expression, int page, int pageSize)
             where T : new();
 
         /// <summary>

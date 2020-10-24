@@ -6,6 +6,7 @@
 
 namespace Devkit.Data.Seeding
 {
+    using System.Threading.Tasks;
     using Devkit.Data.Interfaces;
 
     /// <summary>
@@ -43,7 +44,7 @@ namespace Devkit.Data.Seeding
         /// <summary>
         /// Executes the seeding process.
         /// </summary>
-        public abstract void Execute();
+        public abstract Task Execute();
 
         /// <summary>
         /// Executes this instance.

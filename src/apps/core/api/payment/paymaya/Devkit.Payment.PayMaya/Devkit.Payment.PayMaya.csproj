@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..\..\..\..\..</DockerfileContext>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+        <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.8" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\sdk\communication\Devkit.Http\Devkit.Http.csproj" />
+        <ProjectReference Include="..\..\..\..\sdk\communication\Devkit.ServiceBus\Devkit.ServiceBus.csproj" />
+        <ProjectReference Include="..\..\..\communication\Devkit.Communication.Payment\Devkit.Communication.Payment.csproj" />
+        <ProjectReference Include="..\..\Devkit.Payment\Devkit.Payment.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Business\" />
+    </ItemGroup>
+</Project>

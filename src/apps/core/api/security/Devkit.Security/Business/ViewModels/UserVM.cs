@@ -96,14 +96,6 @@ namespace Devkit.Security.Business.ViewModels
         public string MiddleName { get; set; }
 
         /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
-        public string Password { get; set; }
-
-        /// <summary>
         /// Gets or sets the phone number.
         /// </summary>
         /// <value>
@@ -133,6 +125,6 @@ namespace Devkit.Security.Business.ViewModels
         /// <value>
         /// The zip.
         /// </value>
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
     }
 }

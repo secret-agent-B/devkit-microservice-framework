@@ -7,8 +7,8 @@
 namespace Devkit.Data.Seeding
 {
     using System.IO;
-    using System.Text.Json;
     using Devkit.Data.Interfaces;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Json seeder base class.
@@ -39,7 +39,7 @@ namespace Devkit.Data.Seeding
         public override void InitializeSource()
         {
             var jsonString = File.ReadAllText(this._seedFile);
-            this.Source = JsonSerializer.Deserialize<TSource>(jsonString);
+            this.Source = JsonConvert.DeserializeObject<TSource>(jsonString);
         }
     }
 }

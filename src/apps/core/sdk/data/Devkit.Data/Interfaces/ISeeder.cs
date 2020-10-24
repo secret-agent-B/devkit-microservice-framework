@@ -6,6 +6,8 @@
 
 namespace Devkit.Data.Interfaces
 {
+    using System.Threading.Tasks;
+
     /// <summary>
     /// The seeder interface.
     /// </summary>
@@ -14,6 +16,6 @@ namespace Devkit.Data.Interfaces
         /// <summary>
         /// Executes the seeding process.
         /// </summary>
-        void Execute();
+        Task Execute();
     }
 }

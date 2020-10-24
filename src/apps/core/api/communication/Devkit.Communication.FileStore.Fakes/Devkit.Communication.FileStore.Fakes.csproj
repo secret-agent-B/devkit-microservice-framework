@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tests\Devkit.ServiceBus.Test\Devkit.ServiceBus.Test.csproj" />
+    <ProjectReference Include="..\Devkit.Communication.FileStore\Devkit.Communication.FileStore.csproj" />
+  </ItemGroup>
+
+</Project>

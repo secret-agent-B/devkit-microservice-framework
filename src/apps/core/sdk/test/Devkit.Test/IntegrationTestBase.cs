@@ -71,12 +71,19 @@ namespace Devkit.Test
         /// <returns>
         /// An http response message.
         /// </returns>
-        protected async Task<TResponse> DeleteAsync<TResponse>(string route)
+        protected async Task<TestHttpResponse<TResponse>> DeleteAsync<TResponse>(string route)
         {
             var response = await this.Client.DeleteAsync(this.ConvertRouteToUri(route));
-            var json = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<TResponse>(json);
+            TResponse apiResponse = default;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            }
+
+            return new TestHttpResponse<TResponse>(apiResponse, response.StatusCode, response.IsSuccessStatusCode);
         }
 
         /// <summary>
@@ -90,9 +97,15 @@ namespace Devkit.Test
         protected async Task<TestHttpResponse<TResponse>> GetAsync<TResponse>(string route)
         {
             var response = await this.Client.GetAsync(this.ConvertRouteToUri(route), HttpCompletionOption.ResponseContentRead);
-            var json = await response.Content.ReadAsStringAsync();
 
-            var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            TResponse apiResponse = default;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            }
+
             return new TestHttpResponse<TResponse>(apiResponse, response.StatusCode, response.IsSuccessStatusCode);
         }
 
@@ -118,8 +131,14 @@ namespace Devkit.Test
                 throw new HttpRequestException(responseString);
             }
 
-            var json = await response.Content.ReadAsStringAsync();
-            var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            TResponse apiResponse = default;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            }
+
             return new TestHttpResponse<TResponse>(apiResponse, response.StatusCode, response.IsSuccessStatusCode);
         }
 
@@ -136,9 +155,15 @@ namespace Devkit.Test
             using var stringContent = new StringContent(JsonConvert.SerializeObject(new { }), Encoding.UTF8, "application/json");
 
             var response = await this.Client.PostAsync(this.ConvertRouteToUri(route), stringContent);
-            var json = await response.Content.ReadAsStringAsync();
 
-            var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            TResponse apiResponse = default;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            }
+
             return new TestHttpResponse<TResponse>(apiResponse, response.StatusCode, response.IsSuccessStatusCode);
         }
 
@@ -156,9 +181,15 @@ namespace Devkit.Test
             using var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
             var response = await this.Client.PutAsync(this.ConvertRouteToUri(route), stringContent);
-            var json = await response.Content.ReadAsStringAsync();
 
-            var apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            TResponse apiResponse = default;
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                apiResponse = JsonConvert.DeserializeObject<TResponse>(json);
+            }
+
             return new TestHttpResponse<TResponse>(apiResponse, response.StatusCode, response.IsSuccessStatusCode);
         }
 

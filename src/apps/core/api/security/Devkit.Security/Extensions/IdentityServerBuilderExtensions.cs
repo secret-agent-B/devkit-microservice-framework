@@ -32,6 +32,7 @@ namespace Devkit.Security.Extensions
             builder.Services.AddTransient<ICorsPolicyService, InMemoryCorsPolicyService>();
             builder.Services.AddTransient<IResourceStore, CustomResourceStore>();
             builder.Services.AddSingleton<IPersistedGrantStore, CustomPersistedGrantStore>();
+            builder.Services.AddSingleton<CustomUserStore>();
 
             builder.AddProfileService<CustomProfileService>();
 

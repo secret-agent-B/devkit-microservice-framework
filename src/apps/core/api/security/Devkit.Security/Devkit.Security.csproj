@@ -4,7 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>b85db4a6-91bb-45e4-aab3-a7e14f4962e9</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <DockerfileContext>..\..\..</DockerfileContext>
+        <DockerfileContext>..\..\..\..\..</DockerfileContext>
         <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
@@ -18,24 +18,34 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AspNetCore.Identity.Mongo" Version="6.7.1" />
+        <PackageReference Include="AspNetCore.Identity.Mongo" Version="6.7.2" />
         <PackageReference Include="IdentityServer4.AspNetIdentity" Version="4.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.6" />
+        <PackageReference Include="MassTransit" Version="7.0.4" />
+        <PackageReference Include="MassTransit.Analyzers" Version="7.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.8" />
         <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
         <PackageReference Include="System.Security.Principal.Windows" Version="4.7.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.8">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\..\..\sdk\webapi\Devkit.WebAPI\Devkit.WebAPI.csproj" />
+        <ProjectReference Include="..\..\communication\Devkit.Communication.FileStore\Devkit.Communication.FileStore.csproj" />
+        <ProjectReference Include="..\..\communication\Devkit.Communication.Security\Devkit.Communication.Security.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Update="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 </Project>

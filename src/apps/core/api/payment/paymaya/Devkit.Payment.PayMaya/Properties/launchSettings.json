@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Devkit.Payment.PayMaya": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

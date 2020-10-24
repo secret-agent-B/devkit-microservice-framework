@@ -6,11 +6,22 @@
 
 namespace Devkit.Security.Data.Models
 {
+    using System.Collections.Generic;
+    using System.Threading;
+
     /// <summary>
     /// The user profile.
     /// </summary>
     public class UserProfile
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserProfile"/> class.
+        /// </summary>
+        public UserProfile()
+        {
+            this.IdentificationCards = new List<IdentificationCard>();
+        }
+
         /// <summary>
         /// Gets or sets the address1.
         /// </summary>
@@ -58,6 +69,14 @@ namespace Devkit.Security.Data.Models
         /// The full name.
         /// </value>
         public string FullName { get; set; }
+
+        /// <summary>
+        /// Gets the identification cards.
+        /// </summary>
+        /// <value>
+        /// The identification cards.
+        /// </value>
+        public List<IdentificationCard> IdentificationCards { get; }
 
         /// <summary>
         /// Gets or sets the last name.
@@ -121,6 +140,6 @@ namespace Devkit.Security.Data.Models
         /// <value>
         /// The zip.
         /// </value>
-        public string Zip { get; set; }
+        public string ZipCode { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace Devkit.Data.Seeding
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Reflection;
     using Devkit.Data.Interfaces;
     using OfficeOpenXml;
     using OfficeOpenXml.Table;

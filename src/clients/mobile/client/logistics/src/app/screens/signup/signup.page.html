@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="/auth"></ion-back-button>
+		</ion-buttons> 
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="abs-bkg h100">
+		<ion-grid class="h100">
+			<ion-row class="h100">
+				<ion-col size-md="6" offset-sm="3">
+					<div class="v-center h100">
+						<ion-card class="user-card"> 
+							<ion-card-header>
+								<ion-card-title>Member Registration</ion-card-title>
+							</ion-card-header>
+							<ion-card-content> 
+								Register as a normal user of the app. you will
+								be able to request delivery of items limited to
+								2000php.
+
+								<br />
+								<br />
+								<ion-button
+									type="submit"
+									expand="block"
+									color="dark"
+									[routerLink]="['/signup', 'member']"
+									>Register as a Member</ion-button
+								>
+							</ion-card-content>
+						</ion-card>
+
+						<ion-card class="driver-card"> 
+							<ion-card-header>
+								<ion-card-title>Driver Registration</ion-card-title>
+							</ion-card-header>
+							<ion-card-content> 
+								Register as a driver for the app, you will be
+								able to do what a normal Member Account, but you
+								will also recieve a request for item delivery in
+								your area of operation.
+
+								<br />
+								<br />
+								<ion-button
+									type="submit"
+									expand="block"
+									color="dark"
+									[routerLink]="['/signup', 'driver']"
+									>Register as a Driver</ion-button
+								>
+							</ion-card-content>
+						</ion-card>
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>

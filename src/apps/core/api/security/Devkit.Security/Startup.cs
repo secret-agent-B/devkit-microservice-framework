@@ -13,6 +13,8 @@ namespace Devkit.Security
     using Devkit.Security.Data;
     using Devkit.Security.Data.Models;
     using Devkit.Security.Extensions;
+    using Devkit.Security.ServiceBus;
+    using Devkit.ServiceBus.Extensions;
     using Devkit.WebAPI;
     using IdentityServer4;
     using Microsoft.AspNetCore.Builder;
@@ -62,6 +64,8 @@ namespace Devkit.Security
                         new IgnoreExtraElementsConvention(true),
                     },
                     type => true);
+
+            services.AddServiceBus<SecurityBusRegistry>();
 
             services
                 .AddIdentityServer(options =>

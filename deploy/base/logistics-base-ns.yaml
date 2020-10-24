@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devkit-base-ns
+  labels:
+    name: devkit-base-ns
+    app: devkit-app
+    tier: base
+    

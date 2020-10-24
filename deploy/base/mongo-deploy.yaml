@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-base-ns
+  name: mongo-deploy
+  labels:
+    name: mongo-deploy
+    app: devkit-app
+    tier: base
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: mongo-pod
+      app: devkit-app
+      tier: base
+  template:
+    metadata:
+      namespace: devkit-base-ns
+      name: mongo-pod
+      labels:
+        name: mongo-pod
+        app: devkit-app
+        tier: base
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:4.2.2
+          ports:
+            - containerPort: 27017

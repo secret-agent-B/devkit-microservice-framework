@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-base-ns
+  name: consul-deploy
+  labels:
+    name: consul-deploy
+    app: devkit-app
+    tier: base
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: consul-pod
+      app: devkit-app
+      tier: base
+  template:
+    metadata:
+      namespace: devkit-base-ns
+      name: consul-pod
+      labels:
+        name: consul-pod
+        app: devkit-app
+        tier: base
+    spec:
+      containers:
+        - name: consul
+          image: consul:1.8.4
+          ports:
+            - containerPort: 8500
+
+

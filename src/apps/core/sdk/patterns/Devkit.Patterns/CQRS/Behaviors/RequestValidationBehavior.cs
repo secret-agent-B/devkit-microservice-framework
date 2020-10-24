@@ -7,14 +7,14 @@
 namespace Devkit.Patterns.CQRS.Behaviors
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using Devkit.Patterns.Exceptions;
-    using Devkit.Patterns.Properties;
     using FluentValidation;
     using MediatR;
-    using Microsoft.Extensions.Logging;
+    using Serilog;
 
     /// <summary>
     /// The pipeline behavior that validates incoming requests before it gets processed by the handler.
@@ -27,7 +27,7 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// <summary>
         /// The logger.
         /// </summary>
-        private readonly ILogger<TRequest> _logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// The validators.
@@ -39,7 +39,7 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// </summary>
         /// <param name="validators">The validators.</param>
         /// <param name="logger">The logger.</param>
-        public RequestValidationBehavior(IEnumerable<IValidator<TRequest>> validators, ILogger<TRequest> logger)
+        public RequestValidationBehavior(IEnumerable<IValidator<TRequest>> validators, ILogger logger)
         {
             this._validators = validators;
             this._logger = logger;
@@ -54,7 +54,7 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// <returns>
         /// Awaitable task returning the <typeparamref name="TResponse" />.
         /// </returns>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Handled by MediatR.")]
+        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "Handled by MediatR.")]
         public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
         {
             var context = new ValidationContext<TRequest>(request);
@@ -68,8 +68,18 @@ namespace Devkit.Patterns.CQRS.Behaviors
 
             if (failures.Any())
             {
-                this._logger.LogInformation(Resources.REQUEST_VALIDATION_ERROR_MESSAGE, typeof(TRequest).Name, request, failures);
-                throw new RequestException(failures);
+                var requestName = typeof(TRequest).Name;
+                var behaviorName = typeof(RequestValidationBehavior<TRequest, TResponse>).Name;
+
+                this._logger
+                    .ForContext("Behavior", behaviorName)
+                    .ForContext("RequestName", requestName)
+                    .ForContext("ValidRequest", false)
+                    .ForContext("RequestPayload", request, true)
+                    .ForContext("Errors", failures, true)
+                    .Information("Validated request with errors.");
+
+                throw new AppException(failures);
             }
 
             return next();

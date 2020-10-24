@@ -23,6 +23,11 @@ namespace Devkit.Gateway
     public class Startup : AppStartupBase
     {
         /// <summary>
+        /// Default Cors Policy name.
+        /// </summary>
+        private const string _defaultPolicy = "DefaultPolicy";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
         /// <param name="env">The env.</param>
@@ -38,7 +43,8 @@ namespace Devkit.Gateway
         /// <param name="app">The application.</param>
         protected override void CustomConfigure(IApplicationBuilder app)
         {
-            app.UseHttpsRedirection();
+            app.UseCors(_defaultPolicy);
+            // app.UseHttpsRedirection();
             app.UseAuthorization();
             app.UseOcelot().Wait();
         }
@@ -50,6 +56,14 @@ namespace Devkit.Gateway
         protected override void CustomConfigureServices(IServiceCollection services)
         {
             services
+                .AddCors(options =>
+                    options.AddPolicy(_defaultPolicy,
+                        policy => policy
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                    )
+                )
                 .AddSecurity()
                 .AddOcelot()
                 .AddPolly()

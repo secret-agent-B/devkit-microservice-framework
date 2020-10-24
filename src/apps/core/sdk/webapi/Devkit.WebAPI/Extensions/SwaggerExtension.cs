@@ -7,6 +7,7 @@
 namespace Devkit.WebAPI.Extensions
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Reflection;
     using Devkit.WebAPI;
@@ -27,13 +28,8 @@ namespace Devkit.WebAPI.Extensions
         /// <returns>
         /// The service collection.
         /// </returns>
-        public static IServiceCollection AddSwagger(this IServiceCollection services, APIDefinition apiDefinition)
+        public static IServiceCollection AddSwagger(this IServiceCollection services, [NotNull] APIDefinition apiDefinition)
         {
-            if (apiDefinition == null)
-            {
-                throw new ArgumentNullException(nameof(apiDefinition));
-            }
-
             services.AddSwagger(apiDefinition.Name, apiDefinition.Description, apiDefinition.Version);
 
             return services;
@@ -51,9 +47,9 @@ namespace Devkit.WebAPI.Extensions
         /// </returns>
         public static IServiceCollection AddSwagger(this IServiceCollection services, string title, string description, string version)
         {
-            _ = bool.TryParse(Environment.GetEnvironmentVariable("DISABLE_SERVICE_SWAGGER"), out var disableMiddleware);
+            _ = bool.TryParse(Environment.GetEnvironmentVariable("ENABLE_SWAGGER"), out var enableMiddleware);
 
-            if (disableMiddleware)
+            if (!enableMiddleware)
             {
                 return services;
             }
@@ -92,6 +88,13 @@ namespace Devkit.WebAPI.Extensions
         /// </returns>
         public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, APIDefinition apiDefinition)
         {
+            _ = bool.TryParse(Environment.GetEnvironmentVariable("ENABLE_SWAGGER"), out var enableMiddleware);
+
+            if (!enableMiddleware)
+            {
+                return app;
+            }
+
             if (apiDefinition == null)
             {
                 throw new ArgumentNullException(nameof(apiDefinition));
@@ -111,9 +114,9 @@ namespace Devkit.WebAPI.Extensions
         /// </returns>
         public static IApplicationBuilder UseSwagger(this IApplicationBuilder app, string title, string version)
         {
-            _ = bool.TryParse(Environment.GetEnvironmentVariable("DISABLE_SERVICE_SWAGGER"), out var disableMiddleware);
+            _ = bool.TryParse(Environment.GetEnvironmentVariable("ENABLE_SWAGGER"), out var enableMiddleware);
 
-            if (disableMiddleware)
+            if (!enableMiddleware)
             {
                 return app;
             }

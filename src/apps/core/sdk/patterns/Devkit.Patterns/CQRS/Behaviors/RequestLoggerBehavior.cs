@@ -8,9 +8,8 @@ namespace Devkit.Patterns.CQRS.Behaviors
 {
     using System.Threading;
     using System.Threading.Tasks;
-    using Devkit.Patterns.Properties;
     using MediatR.Pipeline;
-    using Microsoft.Extensions.Logging;
+    using Serilog;
 
     /// <summary>
     /// This behavior logs all incoming requests prior to execution.
@@ -28,7 +27,7 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// Initializes a new instance of the <see cref="RequestLoggerBehavior{TRequest}"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public RequestLoggerBehavior(ILogger<TRequest> logger)
+        public RequestLoggerBehavior(ILogger logger)
         {
             this._logger = logger;
         }
@@ -43,7 +42,15 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// </returns>
         public Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            this._logger.LogInformation(Resources.REQUEST_LOGGER_INFO_MESSAGE, typeof(TRequest).Name, request);
+            var behaviorName = typeof(RequestLoggerBehavior<TRequest>).Name;
+            var requestName = typeof(TRequest).Name;
+
+            this._logger
+                .ForContext("Behavior", behaviorName)
+                .ForContext("RequestName", requestName)
+                .ForContext("RequestPayload", request, true)
+                .Information("Processing CQRS request.");
+
             return Task.CompletedTask;
         }
     }

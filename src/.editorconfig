@@ -250,3 +250,9 @@ dotnet_diagnostic.CS1658.severity = silent
 
 # CA1056: Uri properties should not be strings
 dotnet_diagnostic.CA1056.severity = none
+
+# CA1062: Validate arguments of public methods
+dotnet_diagnostic.CA1062.severity = silent
+
+# CA1711: Identifiers should not have incorrect suffix
+dotnet_diagnostic.CA1711.severity = none

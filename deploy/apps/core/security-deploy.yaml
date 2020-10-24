@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-api-ns
+  name: security-deploy
+  labels:
+    name: security-deploy
+    app: devkit-app
+    tier: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:      
+      name: security-pod
+      app: devkit-app
+      tier: api
+  template:
+    metadata:
+      namespace: devkit-api-ns
+      name: security-pod
+      labels: 
+        name: security-pod
+        app: devkit-app
+        tier: api
+    spec:
+      containers:
+        - name: security
+          image: devkit.security:latest
+          ports:
+            - containerPort: 443
+
+
+    

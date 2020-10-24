@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-base-ns
+  name: portainer-deploy
+  labels:
+    name: portainer-deploy
+    app: devkit-app
+    tier: base
+spec:
+  selector:
+    matchLabels:
+      name: portainer-pod
+      app: devkit-app
+      tier: base    
+  template:
+    metadata:
+      namespace: devkit-base-ns
+      name: portainer-pod
+      labels:
+        name: portainer-pod
+        app: devkit-app
+        tier: base   
+    spec:
+      containers:
+        - name: portainer
+          image: portainer/portainer:1.24.1-alpine
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - mountPath: /var/run/docker.sock
+              name: portainer-volume
+      volumes:
+        - name: portainer-volume
+          hostPath:
+              path: /home/radriano/source/volumes/portainer

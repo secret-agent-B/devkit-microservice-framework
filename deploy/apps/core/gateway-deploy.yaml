@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: devkit-api-ns
+  name: gateway-deploy
+  labels:
+    name: gateway-deploy
+    app: devkit-app
+    tier: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:      
+      name: gateway-pod
+      app: devkit-app
+      tier: api
+  template:
+    metadata:
+      namespace: devkit-api-ns
+      name: gateway-pod
+      labels:
+        name: gateway-pod
+        app: devkit-app
+        tier: api
+    spec:
+      containers:
+        - name: gateway
+          image: devkit.gateway:latest
+          ports:
+            - containerPort: 443
+    

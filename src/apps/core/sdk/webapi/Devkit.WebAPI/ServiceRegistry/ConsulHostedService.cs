@@ -12,7 +12,6 @@ namespace Devkit.WebAPI.ServiceRegistry
     using System.Threading;
     using System.Threading.Tasks;
     using Consul;
-    using Devkit.WebAPI.Properties;
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Logging;
 
@@ -114,7 +113,7 @@ namespace Devkit.WebAPI.ServiceRegistry
             try
             {
                 this._cts.Cancel();
-                this._logger.LogInformation(Resources.CONSUL_REMOVING_REGISTRATION);
+                this._logger.LogInformation("Removing registration from Consul.");
                 await this._consulClient.Agent.ServiceDeregister(this._consulConfig.ServiceId, cancellationToken);
             }
             catch (HttpRequestException ex)
@@ -123,7 +122,7 @@ namespace Devkit.WebAPI.ServiceRegistry
             }
             catch (Exception ex)
             {
-                this._logger.LogError(ex, Resources.CONSUL_REMOVING_REGISTRATION_ERR_MESSAGE);
+                this._logger.LogError(ex, "Failed to remove registration from Consul.");
 
                 throw;
             }

@@ -49,7 +49,7 @@ namespace Devkit.WebAPI.Filters
         {
             const string _json_mime_type = "application/json";
 
-            if (context?.Exception is RequestException exception)
+            if (context?.Exception is AppException exception)
             {
                 context.HttpContext.Response.ContentType = _json_mime_type;
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;

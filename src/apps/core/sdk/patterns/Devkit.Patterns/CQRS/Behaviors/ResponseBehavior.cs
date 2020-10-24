@@ -11,6 +11,7 @@ namespace Devkit.Patterns.CQRS.Behaviors
     using Devkit.Patterns.CQRS.Contracts;
     using Devkit.Patterns.Exceptions;
     using MediatR.Pipeline;
+    using Serilog;
 
     /// <summary>
     /// The behavior that checks if the request was successful, if not - throws an exception.
@@ -22,6 +23,20 @@ namespace Devkit.Patterns.CQRS.Behaviors
         where TResponse : IResponse
     {
         /// <summary>
+        /// The logger.
+        /// </summary>
+        private readonly ILogger _logger;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ResponseBehavior{TRequest, TResponse}"/> class.
+        /// </summary>
+        /// <param name="logger">The logger.</param>
+        public ResponseBehavior(ILogger logger)
+        {
+            this._logger = logger;
+        }
+
+        /// <summary>
         /// Process method executes after the Handle method on your handler.
         /// </summary>
         /// <param name="request">Request instance.</param>
@@ -32,12 +47,23 @@ namespace Devkit.Patterns.CQRS.Behaviors
         /// </returns>
         public Task Process(TRequest request, TResponse response, CancellationToken cancellationToken)
         {
+            var behaviorName = typeof(ResponseBehavior<TRequest, TResponse>).Name;
+            var requestName = typeof(TRequest).Name;
+
+            this._logger
+                .ForContext("Behavior", behaviorName)
+                .ForContext("IsSuccessful", response.IsSuccessful)
+                .ForContext("RequestName", requestName)
+                .ForContext("RequestPayload", request, true)
+                .ForContext("ResponsePayload", response, true)
+                .Information("Processed request.");
+
             if (response.IsSuccessful)
             {
                 return Task.CompletedTask;
             }
 
-            var requestException = new RequestException();
+            var requestException = new AppException();
 
             foreach (var item in response.Exceptions)
             {

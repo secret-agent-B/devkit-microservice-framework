@@ -1,0 +1,41 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/connect/token",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/security-api/connect/token",
+            "UpstreamHttpMethod": [
+                "Post"
+            ],
+            "ServiceName": "security-api"
+        },
+        {
+            "DownstreamPathTemplate": "/.well-known/openid-configuration",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/security-api/.well-known/openid-configuration",
+            "UpstreamHttpMethod": [
+                "Get"
+            ],
+            "ServiceName": "security-api"
+        },
+        {
+            "DownstreamPathTemplate": "/users/{role}/register",
+            "DownstreamScheme": "http",
+            "UpstreamPathTemplate": "/security-api/users/{role}/register",
+            "UpstreamHttpMethod": [
+                "Post"
+            ],
+            "RouteClaimsRequirement": {
+                "client_id": "mobile-app"
+            },
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "devkit-security",
+                "AllowedScopes": [
+                    "orders.write",
+                    "deliveries.write"
+                ]
+            },
+            "ServiceName": "security-api"
+        }
+    ]
+}

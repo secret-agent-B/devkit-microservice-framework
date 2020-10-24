@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  namespace: devkit-base-ns
+  name: kibana-deploy
+  labels:
+    name: kibana-deploy
+    app: devkit-app
+    tier: base
+spec:
+  selector:
+    matchLabels:
+      name: kibana-pod
+      app: devkit-app
+      tier: base
+  template:
+    metadata:
+      namespace: devkit-base-ns
+      name: kibana-pod
+      labels:
+        name: kibana-pod
+        app: devkit-app
+        tier: base
+    spec:
+      containers:
+        - name: kibana
+          image: kibana:7.8.1
+          env:
+            - name: ELASTICSEARCH_HOSTS
+              value: 'http://elasticsearch-service:9200'
+          ports:
+            - containerPort: 5601

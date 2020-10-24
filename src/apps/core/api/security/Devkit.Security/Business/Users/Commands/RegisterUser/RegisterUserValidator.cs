@@ -56,10 +56,10 @@ namespace Devkit.Security.Business.Users.Commands.RegisterUser
                 .NotEmpty()
                 .MinimumLength(2);
 
-            this.RuleFor(x => x.Zip)
+            this.RuleFor(x => x.ZipCode)
                 .NotNull()
                 .NotEmpty()
-                .MinimumLength(5);
+                .MinimumLength(4);
         }
     }
 }

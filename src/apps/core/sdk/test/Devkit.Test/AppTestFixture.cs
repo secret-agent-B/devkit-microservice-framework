@@ -8,11 +8,15 @@ namespace Devkit.Test
 {
     using System;
     using Devkit.Data;
+    using Devkit.ServiceBus.Interfaces;
+    using MassTransit;
+    using MassTransit.MessageData;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
     using Mongo2Go;
+    using Serilog;
 
     /// <summary>
     /// Application test fixture to generate the test host.
@@ -73,6 +77,26 @@ namespace Devkit.Test
                 .ConfigureTestServices(services =>
                 {
                     this._configuration?.Invoke(services);
+
+                    services.AddSingleton(Log.Logger);
+
+                    services
+                        .AddMassTransit(x =>
+                        {
+                            var registry = services.BuildServiceProvider().GetService<IBusRegistry>();
+
+                            registry?.RegisterConsumers(x);
+                            registry?.RegisterRequestClients(x);
+
+                            x.UsingInMemory((context, cfg) =>
+                            {
+                                cfg.TransportConcurrencyLimit = 100;
+                                cfg.ConfigureEndpoints(context);
+                            });
+                        });
+
+                    // Needed for transfering files within the ecosystem.
+                    services.AddSingleton<IMessageDataRepository, InMemoryMessageDataRepository>();
                 });
         }
 
@@ -90,10 +114,9 @@ namespace Devkit.Test
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
             Environment.SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Test");
-
-            Environment.SetEnvironmentVariable("DISABLE_SERVICE_BUS", "true");
-            Environment.SetEnvironmentVariable("DISABLE_SERVICE_REGISTRY", "true");
-            Environment.SetEnvironmentVariable("DISABLE_SERVICE_SWAGGER", "true");
+            Environment.SetEnvironmentVariable("ENABLE_SERVICE_REGISTRY", "false");
+            Environment.SetEnvironmentVariable("ENABLE_SWAGGER", "false");
+            Environment.SetEnvironmentVariable("SERVICE_BUS_TYPE", "in-memory");
 
             return base.CreateWebHostBuilder()
                 .ConfigureServices(services =>

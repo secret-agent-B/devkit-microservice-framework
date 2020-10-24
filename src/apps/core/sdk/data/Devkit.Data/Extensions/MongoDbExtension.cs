@@ -63,7 +63,7 @@ namespace Devkit.Data.Extensions
             var provider = services.BuildServiceProvider();
             var seeder = provider.GetService<TSeeder>();
 
-            seeder.Execute();
+            seeder.Execute().Wait();
 
             return services;
         }

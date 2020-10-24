@@ -16,7 +16,7 @@ namespace Devkit.WebAPI.ServiceRegistry
         /// <summary>
         /// The consul configuration.
         /// </summary>
-        internal const string _section = "ConsulConfiguration";
+        internal const string Section = "ConsulConfiguration";
 
         /// <summary>
         /// Gets or sets the consul host.

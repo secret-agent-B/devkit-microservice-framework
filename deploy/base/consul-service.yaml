@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: devkit-base-ns
+  name: consul-service
+  labels:
+    name: consul-service
+    app: devkit-app
+    tier: base
+spec:
+  type: NodePort
+  ports:
+    - port: 8500
+      targetPort: 8500
+      nodePort: 30101
+  selector:
+    name: consul-pod
+    app: devkit-app
+    tier: base

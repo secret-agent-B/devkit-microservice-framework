@@ -1,0 +1,20 @@
+<ion-app>
+	<ion-menu side="start" menuId="first" contentId="content1">
+		<ion-header>
+			<ion-toolbar>
+				<ion-title>Navigate</ion-title>
+			</ion-toolbar>
+		</ion-header>
+		<ion-content>
+			<ion-list>
+				<ion-menu-toggle auto-hide="true">
+					<ion-item (click)="logout()" routerDirection="forward"  > 
+            <ion-icon name="power-outline"  slot="start"></ion-icon>
+						Logout
+					</ion-item>
+				</ion-menu-toggle>
+			</ion-list>
+		</ion-content>
+	</ion-menu>
+	<ion-router-outlet id="content1"></ion-router-outlet>
+</ion-app>

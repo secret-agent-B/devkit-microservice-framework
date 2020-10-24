@@ -9,6 +9,11 @@
             Registers a new user command.
             </summary>
         </member>
+        <member name="M:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand"/> class.
+            </summary>
+        </member>
         <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.Address1">
             <summary>
             Gets or sets the address1.
@@ -65,6 +70,14 @@
             The first name.
             </value>
         </member>
+        <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.IdentificationCards">
+            <summary>
+            Gets the identification cards.
+            </summary>
+            <value>
+            The identification cards.
+            </value>
+        </member>
         <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.LastName">
             <summary>
             Gets or sets the last name.
@@ -105,6 +118,14 @@
             The province.
             </value>
         </member>
+        <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.Role">
+            <summary>
+            Gets or sets the role.
+            </summary>
+            <value>
+            The role.
+            </value>
+        </member>
         <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.UserName">
             <summary>
             Gets or sets the username.
@@ -113,7 +134,7 @@
             The username.
             </value>
         </member>
-        <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.Zip">
+        <member name="P:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand.ZipCode">
             <summary>
             Gets or sets the zip.
             </summary>
@@ -127,14 +148,14 @@
             </summary>
             <seealso cref="T:Devkit.Patterns.CQRS.Command.CommandHandlerBase`2" />
         </member>
-        <member name="F:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler._userRole">
-            <summary>
-            The user role.
-            </summary>
-        </member>
         <member name="F:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler._roleManager">
             <summary>
             The role manager.
+            </summary>
+        </member>
+        <member name="F:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler._uploadFileClient">
+            <summary>
+            The upload base64 image client.
             </summary>
         </member>
         <member name="F:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler._userManager">
@@ -142,13 +163,14 @@
             The user manager.
             </summary>
         </member>
-        <member name="M:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler.#ctor(Devkit.Data.Interfaces.IRepository,Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount},Microsoft.AspNetCore.Identity.RoleManager{Devkit.Security.Data.Models.UserRole})">
+        <member name="M:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler.#ctor(Devkit.Data.Interfaces.IRepository,Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount},Microsoft.AspNetCore.Identity.RoleManager{Devkit.Security.Data.Models.UserRole},MassTransit.IRequestClient{Devkit.Communication.FileStore.Messages.IUploadBase64Image})">
             <summary>
             Initializes a new instance of the <see cref="T:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler" /> class.
             </summary>
             <param name="repository">The repository.</param>
             <param name="userManager">The user manager.</param>
             <param name="roleManager">The role manager.</param>
+            <param name="uploadFileClient">The upload base64 image client.</param>
         </member>
         <member name="M:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler.ExecuteAsync(System.Threading.CancellationToken)">
             <summary>
@@ -158,6 +180,12 @@
             <returns>
             A task.
             </returns>
+        </member>
+        <member name="M:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserHandler.AssignRole(Devkit.Security.Data.Models.UserAccount)">
+            <summary>
+            Assigns the role.
+            </summary>
+            <returns>A task.</returns>
         </member>
         <member name="T:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserValidator">
             <summary>
@@ -169,6 +197,64 @@
             <summary>
             Initializes a new instance of the <see cref="T:Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserValidator"/> class.
             </summary>
+        </member>
+        <member name="T:Devkit.Security.Business.ViewModels.IdentificationCardEditorVM">
+            <summary>
+            The model for adding or editing an identification card.
+            </summary>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardEditorVM.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardEditorVM.Photo">
+            <summary>
+            Gets or sets the photo in base64 image format.
+            </summary>
+            <value>
+            The photo.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardEditorVM.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
+        </member>
+        <member name="T:Devkit.Security.Business.ViewModels.IdentificationCardVM">
+            <summary>
+            The identification card view model.
+            </summary>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardVM.ImageId">
+            <summary>
+            Gets or sets the image identifier.
+            </summary>
+            <value>
+            The image identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardVM.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Business.ViewModels.IdentificationCardVM.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
         </member>
         <member name="T:Devkit.Security.Business.ViewModels.UserVM">
             <summary>
@@ -256,14 +342,6 @@
             The name of the middle.
             </value>
         </member>
-        <member name="P:Devkit.Security.Business.ViewModels.UserVM.Password">
-            <summary>
-            Gets or sets the password.
-            </summary>
-            <value>
-            The password.
-            </value>
-        </member>
         <member name="P:Devkit.Security.Business.ViewModels.UserVM.PhoneNumber">
             <summary>
             Gets or sets the phone number.
@@ -288,7 +366,7 @@
             The username.
             </value>
         </member>
-        <member name="P:Devkit.Security.Business.ViewModels.UserVM.Zip">
+        <member name="P:Devkit.Security.Business.ViewModels.UserVM.ZipCode">
             <summary>
             Gets or sets the zip.
             </summary>
@@ -302,14 +380,44 @@
             </summary>
             <seealso cref="T:Devkit.WebAPI.DevkitControllerBase" />
         </member>
-        <member name="M:Devkit.Security.Controllers.UsersController.Register(Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand)">
+        <member name="M:Devkit.Security.Controllers.UsersController.Register(System.String,Devkit.Security.Business.Users.Commands.RegisterUser.RegisterUserCommand)">
             <summary>
             Registers the specified username.
             </summary>
+            <param name="role">The role.</param>
             <param name="request">The request.</param>
             <returns>
             An register user response.
             </returns>
+        </member>
+        <member name="T:Devkit.Security.Data.Models.IdentificationCard">
+            <summary>
+            An identification card.
+            </summary>
+        </member>
+        <member name="P:Devkit.Security.Data.Models.IdentificationCard.ImageId">
+            <summary>
+            Gets or sets the image identifier.
+            </summary>
+            <value>
+            The image identifier.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Data.Models.IdentificationCard.Number">
+            <summary>
+            Gets or sets the number.
+            </summary>
+            <value>
+            The number.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Data.Models.IdentificationCard.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>
+            The type.
+            </value>
         </member>
         <member name="T:Devkit.Security.Data.Models.UserAccount">
             <summary>
@@ -341,6 +449,11 @@
         <member name="T:Devkit.Security.Data.Models.UserProfile">
             <summary>
             The user profile.
+            </summary>
+        </member>
+        <member name="M:Devkit.Security.Data.Models.UserProfile.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Security.Data.Models.UserProfile"/> class.
             </summary>
         </member>
         <member name="P:Devkit.Security.Data.Models.UserProfile.Address1">
@@ -389,6 +502,14 @@
             </summary>
             <value>
             The full name.
+            </value>
+        </member>
+        <member name="P:Devkit.Security.Data.Models.UserProfile.IdentificationCards">
+            <summary>
+            Gets the identification cards.
+            </summary>
+            <value>
+            The identification cards.
             </value>
         </member>
         <member name="P:Devkit.Security.Data.Models.UserProfile.LastName">
@@ -447,7 +568,7 @@
             The province.
             </value>
         </member>
-        <member name="P:Devkit.Security.Data.Models.UserProfile.Zip">
+        <member name="P:Devkit.Security.Data.Models.UserProfile.ZipCode">
             <summary>
             Gets or sets the zip.
             </summary>
@@ -472,17 +593,54 @@
             </summary>
             <seealso cref="T:Devkit.Data.Seeding.ExcelSeederBase" />
         </member>
-        <member name="M:Devkit.Security.Data.SecuritySeeder.#ctor(Devkit.Data.Interfaces.IRepository,Devkit.Data.Interfaces.ISeederConfig)">
+        <member name="F:Devkit.Security.Data.SecuritySeeder.daysToExpire">
+            <summary>
+            The days to expire.
+            </summary>
+        </member>
+        <member name="F:Devkit.Security.Data.SecuritySeeder.secondsWithinADay">
+            <summary>
+            The seconds within a day.
+            </summary>
+        </member>
+        <member name="F:Devkit.Security.Data.SecuritySeeder._clientPermissions">
+            <summary>
+            The client permissions.
+            </summary>
+        </member>
+        <member name="F:Devkit.Security.Data.SecuritySeeder._driverPermissions">
+            <summary>
+            The driver permissions.
+            </summary>
+        </member>
+        <member name="F:Devkit.Security.Data.SecuritySeeder._roleManager">
+            <summary>
+            The role manager.
+            </summary>
+        </member>
+        <member name="M:Devkit.Security.Data.SecuritySeeder.#ctor(Devkit.Data.Interfaces.IRepository,Devkit.Data.Interfaces.ISeederConfig,Microsoft.AspNetCore.Identity.RoleManager{Devkit.Security.Data.Models.UserRole})">
             <summary>
             Initializes a new instance of the <see cref="T:Devkit.Security.Data.SecuritySeeder" /> class.
             </summary>
             <param name="repository">The repository.</param>
             <param name="seederConfig">The seeder configuration.</param>
+            <param name="roleManager">The role manager.</param>
         </member>
         <member name="M:Devkit.Security.Data.SecuritySeeder.Execute">
             <summary>
             Executes the seeding process.
             </summary>
+        </member>
+        <member name="M:Devkit.Security.Data.SecuritySeeder.SeedClientConfiguration">
+            <summary>
+            Seeds the client configuration.
+            </summary>
+        </member>
+        <member name="M:Devkit.Security.Data.SecuritySeeder.SeedRoles">
+            <summary>
+            Seeds the roles.
+            </summary>
+            <returns>A task.</returns>
         </member>
         <member name="T:Devkit.Security.Extensions.IdentityServerBuilderExtensions">
             <summary>
@@ -525,6 +683,76 @@
             </summary>
             <param name="args">The arguments.</param>
         </member>
+        <member name="T:Devkit.Security.ServiceBus.Consumers.GetUserConsumer">
+            <summary>
+            The GetUserConsumer consumes and handles the message IGetUser.
+            </summary>
+            <seealso cref="T:Devkit.ServiceBus.MessageConsumerBase`2" />
+        </member>
+        <member name="F:Devkit.Security.ServiceBus.Consumers.GetUserConsumer._userManager">
+            <summary>
+            The user manager.
+            </summary>
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.Consumers.GetUserConsumer.#ctor(Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Security.ServiceBus.Consumers.GetUserConsumer" /> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.Consumers.GetUserConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.Communication.Security.Messages.IGetUser})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.Security.ServiceBus.Consumers.GetUsersConsumer">
+            <summary>
+            The GetUsersConsumer consumes the message IGetUser and returns multiple instances of user information.
+            </summary>
+            <seealso cref="T:Devkit.ServiceBus.MessageConsumerBase`2" />
+        </member>
+        <member name="F:Devkit.Security.ServiceBus.Consumers.GetUsersConsumer._userManager">
+            <summary>
+            The user manager.
+            </summary>
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.Consumers.GetUsersConsumer.#ctor(Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Security.ServiceBus.Consumers.GetUsersConsumer" /> class.
+            </summary>
+            <param name="userManager">The user manager.</param>
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.Consumers.GetUsersConsumer.ConsumeMessage(MassTransit.ConsumeContext{Devkit.Communication.Security.Messages.IGetUsers})">
+            <summary>
+            Consumes the specified message.
+            </summary>
+            <param name="context">The context.</param>
+            <returns>
+            A task.
+            </returns>
+        </member>
+        <member name="T:Devkit.Security.ServiceBus.SecurityBusRegistry">
+            <summary>
+            The SecurityConsumerRegistry contains consumer registration instructions for the Security API.
+            </summary>
+            <seealso cref="T:Devkit.ServiceBus.Interfaces.IBusRegistry" />
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.SecurityBusRegistry.RegisterConsumers(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Configure message consumers.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
+        <member name="M:Devkit.Security.ServiceBus.SecurityBusRegistry.RegisterRequestClients(MassTransit.ExtensionsDependencyInjectionIntegration.IServiceCollectionBusConfigurator)">
+            <summary>
+            Registers the request clients.
+            </summary>
+            <param name="configurator">The configurator.</param>
+        </member>
         <member name="T:Devkit.Security.Stores.CustomProfileService">
             <summary>
             The custom profile service.
@@ -536,16 +764,22 @@
             The claims principal factory.
             </summary>
         </member>
+        <member name="F:Devkit.Security.Stores.CustomProfileService._roleManager">
+            <summary>
+            The role manager.
+            </summary>
+        </member>
         <member name="F:Devkit.Security.Stores.CustomProfileService._userManager">
             <summary>
             The user manager.
             </summary>
         </member>
-        <member name="M:Devkit.Security.Stores.CustomProfileService.#ctor(Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount},Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory{Devkit.Security.Data.Models.UserAccount})">
+        <member name="M:Devkit.Security.Stores.CustomProfileService.#ctor(Microsoft.AspNetCore.Identity.UserManager{Devkit.Security.Data.Models.UserAccount},Microsoft.AspNetCore.Identity.RoleManager{Devkit.Security.Data.Models.UserRole},Microsoft.AspNetCore.Identity.IUserClaimsPrincipalFactory{Devkit.Security.Data.Models.UserAccount})">
             <summary>
             Initializes a new instance of the <see cref="T:Devkit.Security.Stores.CustomProfileService" /> class.
             </summary>
             <param name="userManager">The user manager.</param>
+            <param name="roleManager">The role manager.</param>
             <param name="claimsPrincipalFactory">The claims principal factory.</param>
         </member>
         <member name="M:Devkit.Security.Stores.CustomProfileService.GetProfileDataAsync(IdentityServer4.Models.ProfileDataRequestContext)">
@@ -691,6 +925,29 @@
             Gets all resources.
             </summary>
             <returns>A Resource instance.</returns>
+        </member>
+        <member name="T:Devkit.Security.Stores.CustomUserStore">
+            <summary>
+            The CustomUserStore provides additional functionality for pulling users form the database.
+            </summary>
+            <seealso cref="T:AspNetCore.Identity.Mongo.Stores.UserStore`2" />
+        </member>
+        <member name="M:Devkit.Security.Stores.CustomUserStore.#ctor(MongoDB.Driver.IMongoCollection{Devkit.Security.Data.Models.UserAccount},Microsoft.AspNetCore.Identity.IRoleStore{Devkit.Security.Data.Models.UserRole},Microsoft.AspNetCore.Identity.ILookupNormalizer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Devkit.Security.Stores.CustomUserStore"/> class.
+            </summary>
+            <param name="userCollection">The user collection.</param>
+            <param name="roleStore">The role store.</param>
+            <param name="normalizer">The normalizer.</param>
+        </member>
+        <member name="M:Devkit.Security.Stores.CustomUserStore.FindByNames(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Gets the name of the users by.
+            </summary>
+            <param name="userNames">The user names.</param>
+            <returns>
+            A list of user accounts.
+            </returns>
         </member>
         <member name="T:Devkit.Security.Startup">
             <summary>

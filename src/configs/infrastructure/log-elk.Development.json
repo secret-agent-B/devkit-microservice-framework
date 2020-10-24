@@ -1,0 +1,13 @@
+{
+    "Serilog": {
+      "Using": ["Serilog.Sinks.Console", "Serilog.Sinks.ElasticSearch"],
+      "MinimumLevel": "Information",
+      "Properties": {
+        "Application": "Logistics App"
+      }
+    },
+    "ElasticsearchConfiguration": {
+      "Uri": "http://devkit.elasticsearch:9200"
+    }
+  }
+  
